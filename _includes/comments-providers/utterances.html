@@ -10,10 +10,10 @@
 
     var script = document.createElement('script');
     script.setAttribute('src', 'https://utterances/client.js');
-    script.setAttribute('repo', 'cmkxak.github.io');
+    script.setAttribute('repo', 'cmkxak/cmkxak.github.io');
     script.setAttribute('issue-term', '{{ site.comments.utterances.issue_term | default: "pathname" }}');
     {% if site.comments.utterances.label %}script.setAttribute('label', '{{ site.comments.utterances.label }}');{% endif %}
-    script.setAttribute('theme', '{{ site.comments.utterances.theme | default: "github-light" }}');
+    script.setAttribute('theme', '{{ site.comments.utterances.theme | default: "photon-dark" }}');
     script.setAttribute('crossorigin', 'anonymous');
 
     commentContainer.appendChild(script);
