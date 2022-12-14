@@ -105,7 +105,7 @@ analytics:
 # Site Author
 author:
   name             : "곽철민"
-  avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  avatar           : "/assets/imgs/chulmin.jpg"
   bio              : "To be a backend developer"
   location         : "korea"
   email            :
