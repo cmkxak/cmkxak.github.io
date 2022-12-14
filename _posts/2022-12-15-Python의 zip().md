@@ -1,3 +1,14 @@
+---
+title:  "Python - zip()"
+excerpt: "파이썬의 zip() 함수"
+
+toc: true
+toc_sticky: true
+ 
+date: 2022-12-15
+last_modified_at: 2022-12-15
+---
+
 ## zip()
 
 여러개의 순회 가능한(Iterable)한 객체를 인자로 받고, 각 객체가 담고 있는 원소를 Tuple 형태로 차례대로 접근할 수 있는 반복자(Iterable)을 반환합니다.
