@@ -1,9 +1,22 @@
 <!-- start custom comments snippet -->
-<script src="https://utteranc.es/client.js"
-        repo="cmkxak/cmkxak.github.io"
-        issue-term="title"
-        theme="photon-dark"
-        crossorigin="anonymous"
-        async>
+<script>
+  'use strict';
+
+  (function() {
+    var commentContainer = document.querySelector('#custom-comments');
+
+    if (!commentContainer) {
+      return;
+    }
+
+    var script = document.createElement('script');
+    script.setAttribute('src', 'https://utteranc.es/client.js');
+    script.setAttribute('repo', '{{ site.repository }}');
+    script.setAttribute('issue-term', 'pathname');
+    script.setAttribute('theme', 'photon-dark');
+    script.setAttribute('crossorigin', 'anonymous');
+
+    commentContainer.appendChild(script);
+  })();
 </script>
 <!-- end custom comments snippet -->
