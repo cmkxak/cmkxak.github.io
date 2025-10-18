@@ -1,3 +1,15 @@
+---
+title:  "Spring db - Connection Pool과 DataSource"
+excerpt: "Connection Pool과 DataSource는 무엇일까?"
+
+toc: true
+toc_sticky: true
+ 
+date: 2025-10-18
+last_modified_at: 2025-10-18
+---
+
+
 ### 문제점 : 데이터베이스 커넥션을 매번 획득하는 Case.
 
 - 애플리케이션 로직은 DB 드라이버를 통해 커넥션을 조회한다.
@@ -272,4 +284,5 @@ class MemberRepositoryV1Test {
     - `DataSource` 는 표준 인터페이스 이기 때문에 `DriverManagerDataSource` 에서 `HikariDataSource` 로 변경되어도 해당 코드를 변경하지 않아도 된다.
 - `JdbcUtils` 편의 메서드
     - 스프링은 JDBC를 편리하게 다룰 수 있는 `JdbcUtils` 라는 편의 메서드를 제공한다.
+
     - `JdbcUtils` 을 사용하면 커넥션을 좀 더 편리하게 닫을 수 있다.
