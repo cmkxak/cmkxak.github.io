@@ -1,6 +1,5 @@
 ### 데이터베이스 연결
 
-s
 - jdbc가 제공하는 DriverManager는 **라이브러리에 등록된 db 드라이버들을 관리**하고, **커넥션을 획득하는 기능**을 제공한다.
 - 커넥션이 필요하면 애플리케이션 로직에서 `DriverManager.getConnection()`을 호출한다.
 - DriverManager는 라이브러리에 등록된 드라이버 목록을 자동으로 인식한다. 이 드라이버들에게 순차적으로 정보를 넘겨 커넥션을 획득할 수 있는지 확인한다.
@@ -232,5 +231,6 @@ public class MemberRepositoryV0 {
     }
 }
 ```
+
 
 ###
