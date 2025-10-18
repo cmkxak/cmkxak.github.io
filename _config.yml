@@ -16,7 +16,7 @@ minimal_mistakes_skin    : "dark" # "air", "aqua", "contrast", "dark", "dirt", "
 
 # Site Settings
 locale                   : "en-US"
-title                    : "곽철민 공부 블로그"
+title                    : "DEV Archiving"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "Your Name"
@@ -105,8 +105,8 @@ analytics:
 author:
   name             : "곽철민"
   avatar           : "/assets/imgs/chulmin.jpg"
-  bio              : "To be a backend developer"
-  location         : "korea"
+  bio              : "To be a Better backend developer"
+  location         : "Seoul, South Korea"
   email            :
   links:
     - label: "Email"
@@ -124,9 +124,6 @@ author:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/cmkxak"
-    - label: "Instagram"
-      icon: "fab fa-fw fa-instagram"
-      url: "https://instagram.com/cmkxak"
 
 # Site Footer
 footer:
