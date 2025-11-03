@@ -4,17 +4,21 @@ title: "About Me"
 permalink: /about/
 ---
 
+<div align="center">
+
 # CHEOLMIN KWAK
 
-![Profile](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/14328682-4463-467e-bd66-8d2ac9c10780/CD_%EB%B0%98%EB%AA%85.jpg)
+<img width="402" height="521" alt="image" src="https://github.com/user-attachments/assets/4427089b-c271-4d91-a367-9ebfc35e86dc" />
 
 ### 📫 Contact
-- **Email:** cmkxak@gmail.com  
-- **Phone:** +82 10-8707-7697  
+**Email:** cmkxak@gmail.com  
+**Phone:** +82 10-8707-7697  
 
 ### 🌐 Channel
-- **Blog:** [cmkxak.github.io](http://cmkxak.github.io)  
-- **GitHub:** [github.com/cmkxak](https://github.com/cmkxak)
+**Blog:** [cmkxak.github.io](http://cmkxak.github.io)  
+**GitHub:** [github.com/cmkxak](https://github.com/cmkxak)
+
+</div>
 
 ---
 
@@ -45,7 +49,7 @@ permalink: /about/
 
 ---
 
-### Tmonet  
+### Tmoney  
 **Backend Developer (Staff)**  
 🗓️ Jul 2023 – Nov 2025 (2 years 4 months)  
 
