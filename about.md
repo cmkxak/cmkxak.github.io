@@ -4,11 +4,7 @@ title: "About Me"
 permalink: /about/
 ---
 
-<div align="center">
-
 # CHEOLMIN KWAK
-
-<img width="402" height="521" alt="image" src="https://github.com/user-attachments/assets/4427089b-c271-4d91-a367-9ebfc35e86dc" />
 
 ### 📫 Contact
 **Email:** cmkxak@gmail.com  
@@ -17,8 +13,6 @@ permalink: /about/
 ### 🌐 Channel
 **Blog:** [cmkxak.github.io](http://cmkxak.github.io)  
 **GitHub:** [github.com/cmkxak](https://github.com/cmkxak)
-
-</div>
 
 ---
 
