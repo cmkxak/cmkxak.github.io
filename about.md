@@ -43,7 +43,7 @@ permalink: /about/
 
 ---
 
-### Tmoney  
+### Tmonet  
 **Backend Developer (Staff)**  
 🗓️ Jul 2023 – Nov 2025 (2 years 4 months)  
 
