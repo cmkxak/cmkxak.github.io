@@ -38,8 +38,9 @@ permalink: /about/
 # 🏢 Work Experience
 
 ### Hecto Financial  
-**Payment Service Dev Team**  
+**Easy Cash Development Team**  
 🗓️ Nov 2025 – Present  
+- Developed and maintained **“MyTongjang Pay Service”**.  
 
 ---
 
