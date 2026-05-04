@@ -4,19 +4,107 @@ layout: archive
 
 {{ content }}
 
-<h3 class="archive__subtitle">{{ site.data.ui-text[site.locale].recent_posts | default: "Recent Posts" }}</h3>
+{% assign posts = '' | split: '' %}
+
+{% for post in site.posts %}
+{% unless post.hidden %}
+{% assign posts = posts | push: post %}
+{% endunless %}
+{% endfor %}
+
+<!-- ── Hero / Author Profile ─────────────────── -->
+<div class="hero-section">
+  {% if site.author.avatar %}
+  <div class="author__avatar">
+    <img src="{{ site.author.avatar | relative_url }}"
+         alt="{{ site.author.name }}"
+         itemprop="image">
+  </div>
+  {% endif %}
+
+  <div class="author__content">
+    <h1 class="author__name" itemprop="name">{{ site.author.name }}</h1>
+    {% if site.author.bio %}
+    <p class="author__bio" itemprop="description">{{ site.author.bio }}</p>
+    {% endif %}
+
+    <!-- 경력 & 재직 카드 -->
+    <div class="author__career-card">
+      <div class="career-item">
+        <span class="career-icon">💼</span>
+        경력 <span class="career-highlight">3년차</span>
+      </div>
+      <div class="career-divider"></div>
+      <div class="career-item">
+        <span class="career-icon">🏢</span>
+        <span class="career-highlight">@Hecto-Financial</span> 재직중
+      </div>
+    </div>
+
+    <!-- 태그 배지 -->
+    <div class="author__tags">
+      <span class="author__tag author__tag--blue">☁️ Seoul, Korea</span>
+      <span class="author__tag author__tag--gray">Spring</span>
+      <span class="author__tag author__tag--gray">Java</span>
+      <span class="author__tag author__tag--gray">Algorithm</span>
+    </div>
+  </div>
+</div>
+<!-- ─────────────────────────────────────────── -->
+
+<h2 class="archive__subtitle">최근 포스트</h2>
 
 {% if paginator %}
-  {% assign posts = paginator.posts %}
+{% assign postlist = paginator.posts %}
 {% else %}
-  {% assign posts = site.posts %}
+{% assign postlist = posts %}
 {% endif %}
 
-{% assign entries_layout = page.entries_layout | default: 'list' %}
-<div class="entries-{{ entries_layout }}">
-  {% for post in posts %}
-    {% include archive-single.html type=entries_layout %}
-  {% endfor %}
-</div>
+<div id="main" role="main">
+  <div class="list__items" style="display:flex;flex-direction:column;gap:12px;">
+    {% for post in postlist %}
+    <div class="list__item">
+      <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
 
-{% include paginator.html %}
+        <div class="post-meta-row" style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+          {% if post.categories.size > 0 %}
+          <span class="page__taxonomy-item">{{ post.categories | first }}</span>
+          {% endif %}
+          <span style="font-size:12px;color:var(--gray-400);">
+              <time datetime="{{ post.date | date_to_xmlschema }}">
+                {{ post.date | date: "%Y.%m.%d" }}
+              </time>
+            </span>
+        </div>
+
+        <h2 class="archive__item-title" itemprop="headline">
+          <a href="{{ post.url | relative_url }}" rel="permalink">
+            {{ post.title | markdownify | strip_html }}
+          </a>
+        </h2>
+
+        {% if post.excerpt %}
+        <p class="archive__item-excerpt" itemprop="description">
+          {{ post.excerpt | markdownify | strip_html | truncate: 120 }}
+        </p>
+        {% endif %}
+
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px;">
+            <span style="font-size:12px;color:var(--gray-400);">
+              {% if post.read_time %}📖 {{ post.read_time }} min read{% endif %}
+            </span>
+          <a href="{{ post.url | relative_url }}"
+             style="font-size:13px;font-weight:600;color:var(--blue);text-decoration:none;display:flex;align-items:center;gap:3px;">
+            읽기 <span style="transition:transform 0.15s;display:inline-block;">→</span>
+          </a>
+        </div>
+
+      </article>
+    </div>
+    {% endfor %}
+  </div>
+
+  {% if paginator %}
+  {% include paginator.html %}
+  {% endif %}
+</div>

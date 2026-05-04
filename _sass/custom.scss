@@ -1,0 +1,775 @@
+// =============================================
+//  곽철민 개발 블로그 - 전체 페이지 적용
+// =============================================
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap');
+
+// ── Variables ──────────────────────────────
+:root {
+  --blue: #1B64DA;
+  --blue-light: #EBF1FD;
+  --blue-mid: #5B94E9;
+  --gray-50: #F8F9FA;
+  --gray-100: #F1F3F5;
+  --gray-200: #E9ECEF;
+  --gray-400: #ADB5BD;
+  --gray-500: #868E96;
+  --gray-600: #6C757D;
+  --gray-700: #495057;
+  --gray-800: #343A40;
+  --gray-900: #212529;
+  --white: #FFFFFF;
+  --radius: 20px;
+  --radius-sm: 12px;
+  --radius-xs: 8px;
+}
+
+// ── Base ───────────────────────────────────
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+  background: var(--gray-50) !important;
+  color: var(--gray-900) !important;
+  line-height: 1.7 !important;
+  -webkit-font-smoothing: antialiased;
+}
+
+// ── Navigation (Masthead) ──────────────────
+.masthead {
+  background: rgba(255, 255, 255, 0.88) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-bottom: 1px solid var(--gray-200) !important;
+  box-shadow: none !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 100 !important;
+
+  &__inner-wrap {
+    max-width: 1100px !important;
+    margin: 0 auto !important;
+    padding: 0 28px !important;
+    height: 60px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    flex-wrap: nowrap !important;
+  }
+}
+
+.site-title {
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  color: var(--gray-900) !important;
+  letter-spacing: -0.5px !important;
+  text-decoration: none !important;
+
+  &:visited { color: var(--gray-900) !important; }
+  &:hover { color: var(--blue) !important; }
+}
+
+.greedy-nav {
+  background: transparent !important;
+
+  a {
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    color: var(--gray-600) !important;
+    padding: 6px 14px !important;
+    border-radius: var(--radius-xs) !important;
+    transition: all 0.15s ease !important;
+
+    &:hover {
+      background: var(--gray-100) !important;
+      color: var(--gray-900) !important;
+    }
+  }
+
+  .visible-links a:before { display: none !important; }
+
+  .hidden-links {
+    background: var(--white) !important;
+    border: 1px solid var(--gray-200) !important;
+    border-radius: var(--radius-sm) !important;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08) !important;
+  }
+
+  button.greedy-nav__toggle {
+    color: var(--gray-600) !important;
+  }
+}
+
+// ── Layout Wrappers ────────────────────────
+#main {
+  max-width: 1100px !important;
+  margin: 0 auto !important;
+  padding: 32px 28px 80px !important;
+  float: none !important;
+  width: 100% !important;
+}
+
+.page {
+  float: none !important;
+  width: 100% !important;
+  padding-right: 0 !important;
+
+  // 포스트 상세 페이지: 사이드바 있을 때
+  @media (min-width: 1024px) {
+    &__content {
+      float: none;
+    }
+  }
+}
+
+// ── Sidebar (Author Profile) ───────────────
+.sidebar {
+  opacity: 1 !important;
+  float: none !important;
+
+  &.sticky {
+    overflow: visible !important;
+  }
+}
+
+.author__avatar {
+  display: block !important;
+  margin-bottom: 16px !important;
+
+  img {
+    width: 80px !important;
+    height: 80px !important;
+    border-radius: 24px !important;
+    border: 2px solid var(--gray-200) !important;
+    object-fit: cover !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+}
+
+.author__content {
+  text-align: left !important;
+  padding: 0 !important;
+}
+
+.author__name {
+  font-size: 22px !important;
+  font-weight: 700 !important;
+  color: var(--gray-900) !important;
+  letter-spacing: -0.6px !important;
+  margin: 0 0 4px !important;
+}
+
+.author__bio {
+  font-size: 14px !important;
+  color: var(--gray-600) !important;
+  font-weight: 400 !important;
+  margin: 0 0 14px !important;
+  line-height: 1.5 !important;
+}
+
+// 경력/재직 카드 (custom)
+.author__career-card {
+  display: inline-flex;
+  align-items: center;
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 14px;
+
+  .career-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 9px 15px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gray-800);
+
+    .career-icon { font-size: 14px; }
+    .career-highlight { color: var(--blue); font-weight: 600; }
+  }
+
+  .career-divider {
+    width: 1px;
+    height: 18px;
+    background: var(--gray-200);
+    flex-shrink: 0;
+  }
+}
+
+// 태그 배지
+.author__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-bottom: 20px;
+
+  .author__tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 5px 12px;
+    border-radius: 100px;
+    border: 1px solid;
+    line-height: 1;
+
+    &--blue {
+      background: var(--blue-light);
+      color: var(--blue);
+      border-color: rgba(27, 100, 218, 0.15);
+    }
+
+    &--gray {
+      background: var(--gray-100);
+      color: var(--gray-600);
+      border-color: var(--gray-200);
+    }
+  }
+}
+
+.author__urls-wrapper {
+  margin-top: 4px !important;
+
+  button {
+    display: none !important; // 모바일 토글 제거, 항상 노출
+  }
+}
+
+.author__urls {
+  display: flex !important;
+  flex-direction: column !important;
+  background: var(--white) !important;
+  border: 1px solid var(--gray-200) !important;
+  border-radius: var(--radius) !important;
+  padding: 4px 16px !important;
+  box-shadow: none !important;
+  position: static !important;
+
+  li {
+    border-bottom: 1px solid var(--gray-100) !important;
+    padding: 9px 0 !important;
+
+    &:last-child { border: none !important; }
+  }
+
+  a {
+    font-size: 13px !important;
+    color: var(--gray-700) !important;
+    font-weight: 500 !important;
+    text-decoration: none !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    transition: color 0.15s !important;
+
+    &:hover { color: var(--blue) !important; }
+
+    i, svg {
+      font-size: 14px !important;
+      color: var(--gray-400) !important;
+      width: 16px !important;
+    }
+  }
+}
+
+// ── Home: Hero Section ─────────────────────
+.hero-section {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  padding: 12px 0 36px;
+  border-bottom: 1px solid var(--gray-200);
+  margin-bottom: 32px;
+}
+
+// ── Post List (Archive) ────────────────────
+.archive {
+  h1.page__title {
+    font-size: 22px !important;
+    font-weight: 700 !important;
+    color: var(--gray-900) !important;
+    letter-spacing: -0.5px !important;
+    margin-bottom: 20px !important;
+    border: none !important;
+    padding: 0 !important;
+  }
+}
+
+.list__item {
+  background: var(--white) !important;
+  border: 1px solid var(--gray-200) !important;
+  border-radius: var(--radius) !important;
+  padding: 22px 28px !important;
+  margin-bottom: 12px !important;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s !important;
+  box-shadow: none !important;
+
+  &:hover {
+    border-color: var(--blue-mid) !important;
+    box-shadow: 0 4px 20px rgba(27, 100, 218, 0.08) !important;
+    transform: translateY(-1px) !important;
+  }
+
+  .archive__item {
+    display: block;
+  }
+}
+
+.archive__item-title {
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  color: var(--gray-900) !important;
+  letter-spacing: -0.3px !important;
+  margin: 0 0 8px !important;
+  line-height: 1.4 !important;
+
+  a {
+    color: inherit !important;
+    text-decoration: none !important;
+
+    &:hover { color: var(--blue) !important; }
+
+    // 링크 fix: visited도 같은 색상
+    &:visited { color: var(--gray-900) !important; }
+    &:visited:hover { color: var(--blue) !important; }
+  }
+}
+
+.archive__item-excerpt {
+  font-size: 14px !important;
+  color: var(--gray-600) !important;
+  line-height: 1.6 !important;
+  margin: 0 0 10px !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+}
+
+.page__meta {
+  font-size: 12px !important;
+  color: var(--gray-400) !important;
+  margin: 0 !important;
+
+  time { color: var(--gray-400) !important; }
+}
+
+// 카테고리 배지
+.page__taxonomy-item {
+  display: inline-block !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  color: var(--blue) !important;
+  background: var(--blue-light) !important;
+  padding: 3px 10px !important;
+  border-radius: 6px !important;
+  margin: 0 4px 4px 0 !important;
+  text-decoration: none !important;
+  border: 1px solid rgba(27, 100, 218, 0.15) !important;
+
+  &:hover {
+    background: var(--blue) !important;
+    color: var(--white) !important;
+  }
+}
+
+// ── Pagination ─────────────────────────────
+.pagination {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  margin-top: 32px !important;
+  border: none !important;
+
+  &--pager {
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 10px !important;
+    border: 1px solid var(--gray-200) !important;
+    background: var(--white) !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    color: var(--gray-600) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-decoration: none !important;
+    transition: all 0.15s !important;
+    padding: 0 !important;
+
+    &:hover {
+      border-color: var(--blue) !important;
+      color: var(--blue) !important;
+    }
+
+    &.disabled {
+      opacity: 0.35 !important;
+      pointer-events: none !important;
+    }
+  }
+}
+
+// ── Post Detail Page ───────────────────────
+.page__hero {
+  background: transparent !important;
+
+  &--overlay {
+    border-radius: var(--radius) !important;
+    overflow: hidden !important;
+    margin-bottom: 32px !important;
+  }
+}
+
+// 포스트 헤더
+.page__title {
+  font-size: 28px !important;
+  font-weight: 700 !important;
+  color: var(--gray-900) !important;
+  letter-spacing: -0.7px !important;
+  line-height: 1.3 !important;
+  margin-bottom: 16px !important;
+}
+
+// 포스트 본문
+.page__content {
+  font-size: 15px !important;
+  line-height: 1.85 !important;
+  color: var(--gray-800) !important;
+
+  p { margin-bottom: 1.3em !important; }
+
+  h1, h2, h3, h4 {
+    font-weight: 700 !important;
+    color: var(--gray-900) !important;
+    letter-spacing: -0.4px !important;
+    line-height: 1.3 !important;
+  }
+
+  h2 {
+    font-size: 22px !important;
+    margin: 2.2em 0 0.7em !important;
+    padding-bottom: 8px !important;
+    border-bottom: 2px solid var(--gray-100) !important;
+  }
+
+  h3 {
+    font-size: 18px !important;
+    margin: 1.8em 0 0.5em !important;
+  }
+
+  h4 {
+    font-size: 15px !important;
+    margin: 1.4em 0 0.4em !important;
+  }
+
+  a {
+    color: var(--blue) !important;
+    text-decoration: underline !important;
+    text-underline-offset: 3px !important;
+    text-decoration-color: rgba(27, 100, 218, 0.35) !important;
+
+    &:hover {
+      text-decoration-color: var(--blue) !important;
+    }
+  }
+
+  // 인라인 코드
+  code:not([class*="language-"]) {
+    background: var(--gray-100) !important;
+    color: var(--blue) !important;
+    padding: 2px 7px !important;
+    border-radius: 6px !important;
+    font-size: 0.875em !important;
+    border: 1px solid var(--gray-200) !important;
+    font-family: 'Fira Code', 'JetBrains Mono', 'Consolas', monospace !important;
+  }
+
+  // 코드 블록
+  pre {
+    background: #1e2127 !important;
+    border: none !important;
+    border-radius: var(--radius-sm) !important;
+    padding: 20px 24px !important;
+    overflow-x: auto !important;
+    margin: 1.6em 0 !important;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.12) !important;
+
+    code {
+      background: transparent !important;
+      color: #abb2bf !important;
+      font-size: 14px !important;
+      border: none !important;
+      padding: 0 !important;
+      font-family: 'Fira Code', 'JetBrains Mono', 'Consolas', monospace !important;
+    }
+  }
+
+  // 인용문
+  blockquote {
+    border-left: 3px solid var(--blue) !important;
+    background: var(--blue-light) !important;
+    padding: 14px 20px !important;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0 !important;
+    margin: 1.6em 0 !important;
+    color: var(--gray-700) !important;
+
+    p { margin: 0 !important; }
+  }
+
+  // 표
+  table {
+    border-collapse: collapse !important;
+    width: 100% !important;
+    margin: 1.5em 0 !important;
+    font-size: 14px !important;
+    border-radius: var(--radius-sm) !important;
+    overflow: hidden !important;
+    border: 1px solid var(--gray-200) !important;
+
+    th {
+      background: var(--gray-50) !important;
+      color: var(--gray-700) !important;
+      font-weight: 600 !important;
+      padding: 11px 16px !important;
+      border-bottom: 2px solid var(--gray-200) !important;
+      text-align: left !important;
+    }
+
+    td {
+      padding: 10px 16px !important;
+      border-bottom: 1px solid var(--gray-100) !important;
+      color: var(--gray-800) !important;
+    }
+
+    tr:last-child td { border: none !important; }
+    tr:hover td { background: var(--gray-50) !important; }
+  }
+
+  // 목록
+  ul, ol {
+    padding-left: 1.4em !important;
+    margin-bottom: 1.2em !important;
+
+    li {
+      margin-bottom: 0.4em !important;
+      line-height: 1.7 !important;
+    }
+  }
+
+  ul li::marker { color: var(--blue) !important; }
+
+  // 이미지
+  img {
+    border-radius: var(--radius-sm) !important;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08) !important;
+    max-width: 100% !important;
+  }
+
+  // hr
+  hr {
+    border: none !important;
+    border-top: 2px solid var(--gray-100) !important;
+    margin: 2em 0 !important;
+  }
+}
+
+// ── Breadcrumbs ────────────────────────────
+.breadcrumbs {
+  font-size: 12px !important;
+  margin-bottom: 16px !important;
+  color: var(--gray-400) !important;
+
+  ol { padding: 0 !important; list-style: none !important; display: flex !important; gap: 6px !important; }
+
+  a {
+    color: var(--gray-500) !important;
+    text-decoration: none !important;
+
+    &:hover { color: var(--blue) !important; }
+  }
+}
+
+// ── Tags / Categories Page ─────────────────
+.taxonomy__section {
+  margin-bottom: 40px !important;
+}
+
+.taxonomy__index {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  list-style: none !important;
+  padding: 0 !important;
+  margin-bottom: 32px !important;
+
+  a {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    color: var(--gray-700) !important;
+    background: var(--white) !important;
+    border: 1px solid var(--gray-200) !important;
+    padding: 6px 14px !important;
+    border-radius: 100px !important;
+    text-decoration: none !important;
+    transition: all 0.15s !important;
+
+    &:hover {
+      border-color: var(--blue) !important;
+      color: var(--blue) !important;
+    }
+
+    .count {
+      font-size: 11px !important;
+      background: var(--blue-light) !important;
+      color: var(--blue) !important;
+      padding: 1px 7px !important;
+      border-radius: 100px !important;
+    }
+  }
+}
+
+// ── Search ─────────────────────────────────
+.search-content {
+  background: var(--white) !important;
+  border-radius: var(--radius) !important;
+  border: 1px solid var(--gray-200) !important;
+  padding: 24px 28px !important;
+}
+
+.search-input {
+  width: 100% !important;
+  border: 1px solid var(--gray-200) !important;
+  border-radius: var(--radius-sm) !important;
+  padding: 12px 16px !important;
+  font-size: 15px !important;
+  font-family: inherit !important;
+  background: var(--gray-50) !important;
+  outline: none !important;
+  transition: border-color 0.15s !important;
+
+  &:focus {
+    border-color: var(--blue) !important;
+    background: var(--white) !important;
+    box-shadow: 0 0 0 3px var(--blue-light) !important;
+  }
+}
+
+// ── Footer ─────────────────────────────────
+.page__footer {
+  background: var(--white) !important;
+  border-top: 1px solid var(--gray-200) !important;
+  color: var(--gray-500) !important;
+  font-size: 13px !important;
+  text-align: center !important;
+  padding: 24px 28px !important;
+  margin-top: 0 !important;
+
+  footer {
+    text-align: center !important;
+    padding: 0 !important;
+  }
+
+  a {
+    color: var(--gray-600) !important;
+    text-decoration: none !important;
+
+    &:hover { color: var(--blue) !important; }
+  }
+}
+
+// ── Notices ────────────────────────────────
+.notice {
+  border-radius: var(--radius-sm) !important;
+  border-left: 3px solid var(--blue) !important;
+  background: var(--blue-light) !important;
+  padding: 14px 18px !important;
+}
+
+// ── Buttons ────────────────────────────────
+.btn {
+  border-radius: var(--radius-sm) !important;
+  font-family: inherit !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  transition: all 0.15s !important;
+
+  &--primary, &.btn--primary {
+    background: var(--blue) !important;
+    border-color: var(--blue) !important;
+    color: var(--white) !important;
+
+    &:hover {
+      background: #1557c5 !important;
+    }
+  }
+}
+
+// ── Social Share ───────────────────────────
+.page__share {
+  margin-top: 40px !important;
+  padding-top: 24px !important;
+  border-top: 2px solid var(--gray-100) !important;
+}
+
+// ── Related Posts ──────────────────────────
+.page__related {
+  background: var(--white) !important;
+  border-radius: var(--radius) !important;
+  border: 1px solid var(--gray-200) !important;
+  padding: 24px 28px !important;
+  margin-top: 40px !important;
+
+  h4.page__related-title {
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    color: var(--gray-900) !important;
+    letter-spacing: -0.3px !important;
+    margin-bottom: 16px !important;
+    border: none !important;
+  }
+}
+
+// ── Responsive ─────────────────────────────
+@media (max-width: 1024px) {
+  #main {
+    padding: 24px 20px 60px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  #main {
+    padding: 20px 16px 60px !important;
+  }
+
+  .masthead__inner-wrap {
+    padding: 0 16px !important;
+    height: 56px !important;
+  }
+
+  .page__title {
+    font-size: 22px !important;
+  }
+
+  .list__item {
+    padding: 18px 20px !important;
+  }
+
+  .author__career-card {
+    flex-direction: column;
+    width: 100%;
+
+    .career-divider {
+      width: 100%;
+      height: 1px;
+    }
+  }
+}
