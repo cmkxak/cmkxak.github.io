@@ -5,106 +5,106 @@ layout: archive
 {{ content }}
 
 {% assign posts = '' | split: '' %}
-
 {% for post in site.posts %}
-{% unless post.hidden %}
-{% assign posts = posts | push: post %}
-{% endunless %}
+  {% unless post.hidden %}
+    {% assign posts = posts | push: post %}
+  {% endunless %}
 {% endfor %}
 
-<!-- ── Hero / Author Profile ─────────────────── -->
-<div class="hero-section">
-  {% if site.author.avatar %}
-  <div class="author__avatar">
-    <img src="{{ site.author.avatar | relative_url }}"
-         alt="{{ site.author.name }}"
-         itemprop="image">
-  </div>
-  {% endif %}
-
-  <div class="author__content">
-    <h1 class="author__name" itemprop="name">{{ site.author.name }}</h1>
-    {% if site.author.bio %}
-    <p class="author__bio" itemprop="description">{{ site.author.bio }}</p>
-    {% endif %}
-
-    <!-- 경력 & 재직 카드 -->
-    <div class="author__career-card">
-      <div class="career-item">
-        <span class="career-icon">💼</span>
-        경력 <span class="career-highlight">3년차</span>
-      </div>
-      <div class="career-divider"></div>
-      <div class="career-item">
-        <span class="career-icon">🏢</span>
-        <span class="career-highlight">@Hecto-Financial</span> 재직중
-      </div>
-    </div>
-
-    <!-- 태그 배지 -->
-    <div class="author__tags">
-      <span class="author__tag author__tag--blue">☁️ Seoul, Korea</span>
-      <span class="author__tag author__tag--gray">Spring</span>
-      <span class="author__tag author__tag--gray">Java</span>
-      <span class="author__tag author__tag--gray">Algorithm</span>
-    </div>
-  </div>
-</div>
-<!-- ─────────────────────────────────────────── -->
-
-<h2 class="archive__subtitle">최근 포스트</h2>
-
 {% if paginator %}
-{% assign postlist = paginator.posts %}
+  {% assign postlist = paginator.posts %}
 {% else %}
-{% assign postlist = posts %}
+  {% assign postlist = posts %}
+{% endif %}
+
+{% comment %} Build unique category list for filter chips {% endcomment %}
+{% assign all_categories = '' | split: '' %}
+{% for post in posts %}
+  {% for cat in post.categories %}
+    {% unless all_categories contains cat %}
+      {% assign all_categories = all_categories | push: cat %}
+    {% endunless %}
+  {% endfor %}
+{% endfor %}
+{% assign all_categories = all_categories | sort %}
+
+<section class="toss-hero">
+  <h1 class="toss-hero__title">DEV Archiving</h1>
+  <p class="toss-hero__subtitle">Backend Developer 곽철민의 기술 블로그</p>
+</section>
+
+{% if all_categories.size > 0 %}
+<nav class="toss-filter" aria-label="카테고리 필터">
+  <button type="button" class="toss-chip is-active" data-filter="__all">전체</button>
+  {% for cat in all_categories %}
+    <button type="button" class="toss-chip" data-filter="{{ cat | downcase }}">{{ cat }}</button>
+  {% endfor %}
+</nav>
 {% endif %}
 
 <div id="main" role="main">
-  <div class="list__items" style="display:flex;flex-direction:column;gap:12px;">
+  <div class="toss-grid" id="toss-grid">
     {% for post in postlist %}
-    <div class="list__item">
-      <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+      {% assign post_cat = post.categories | first | default: 'General' %}
+      {% assign cat_slug = post_cat | downcase %}
+      {% assign hash = post.title | size %}
+      {% assign grad_index = hash | modulo: 6 %}
 
-        <div class="post-meta-row" style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
-          {% if post.categories.size > 0 %}
-          <span class="page__taxonomy-item">{{ post.categories | first }}</span>
-          {% endif %}
-          <span style="font-size:12px;color:var(--gray-400);">
-              <time datetime="{{ post.date | date_to_xmlschema }}">
-                {{ post.date | date: "%Y.%m.%d" }}
-              </time>
-            </span>
-        </div>
-
-        <h2 class="archive__item-title" itemprop="headline">
-          <a href="{{ post.url | relative_url }}" rel="permalink">
-            {{ post.title | markdownify | strip_html }}
-          </a>
-        </h2>
-
-        {% if post.excerpt %}
-        <p class="archive__item-excerpt" itemprop="description">
-          {{ post.excerpt | markdownify | strip_html | truncate: 120 }}
-        </p>
-        {% endif %}
-
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px;">
-            <span style="font-size:12px;color:var(--gray-400);">
-              {% if post.read_time %}📖 {{ post.read_time }} min read{% endif %}
-            </span>
-          <a href="{{ post.url | relative_url }}"
-             style="font-size:13px;font-weight:600;color:var(--blue);text-decoration:none;display:flex;align-items:center;gap:3px;">
-            읽기 <span style="transition:transform 0.15s;display:inline-block;">→</span>
-          </a>
-        </div>
-
+      <article class="toss-card" data-categories="{{ post.categories | join: ',' | downcase }}">
+        <a class="toss-card__link" href="{{ post.url | relative_url }}">
+          <div class="toss-card__thumb toss-card__thumb--g{{ grad_index }}">
+            <span class="toss-card__thumb-label">{{ post_cat }}</span>
+          </div>
+          <div class="toss-card__body">
+            <span class="toss-card__category">{{ post_cat }}</span>
+            <h2 class="toss-card__title">{{ post.title | markdownify | strip_html }}</h2>
+            {% if post.excerpt %}
+              <p class="toss-card__excerpt">{{ post.excerpt | markdownify | strip_html | truncate: 90 }}</p>
+            {% endif %}
+            <div class="toss-card__meta">
+              <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y.%m.%d" }}</time>
+              {% if post.read_time %}
+                <span class="toss-card__dot" aria-hidden="true">·</span>
+                <span>{{ post.read_time }} min read</span>
+              {% endif %}
+            </div>
+          </div>
+        </a>
       </article>
-    </div>
     {% endfor %}
   </div>
 
+  <p class="toss-empty" id="toss-empty" hidden>해당 카테고리에 게시물이 없습니다.</p>
+
   {% if paginator %}
-  {% include paginator.html %}
+    {% include paginator.html %}
   {% endif %}
 </div>
+
+<script>
+  (function () {
+    var chips = document.querySelectorAll('.toss-chip');
+    var cards = document.querySelectorAll('.toss-card');
+    var emptyMsg = document.getElementById('toss-empty');
+    if (!chips.length || !cards.length) return;
+
+    chips.forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        var filter = chip.getAttribute('data-filter');
+
+        chips.forEach(function (c) { c.classList.remove('is-active'); });
+        chip.classList.add('is-active');
+
+        var visibleCount = 0;
+        cards.forEach(function (card) {
+          var cats = card.getAttribute('data-categories') || '';
+          var show = filter === '__all' || cats.split(',').indexOf(filter) !== -1;
+          card.style.display = show ? '' : 'none';
+          if (show) visibleCount++;
+        });
+
+        if (emptyMsg) emptyMsg.hidden = visibleCount !== 0;
+      });
+    });
+  })();
+</script>

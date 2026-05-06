@@ -1,69 +1,73 @@
 {% if paginator.total_pages > 1 %}
-<nav class="pagination">
+<nav class="toss-pagination" aria-label="페이지 네비게이션">
   {% assign first_page_path = paginator.first_page_path | default: site.paginate_path | replace: 'page:num', '' | replace: '//', '/' | relative_url %}
-  <ul>
-    {% comment %} Link for previous page {% endcomment %}
-    {% if paginator.previous_page %}
-      {% if paginator.previous_page == 1 %}
-        <li><a href="{{ first_page_path }}">{{ site.data.ui-text[site.locale].pagination_previous | default: "Previous" }}</a></li>
-      {% else %}
-        <li><a href="{{ site.paginate_path | replace: ':num', paginator.previous_page | replace: '//', '/' | relative_url }}">{{ site.data.ui-text[site.locale].pagination_previous | default: "Previous" }}</a></li>
-      {% endif %}
+
+  {% comment %} Prev arrow {% endcomment %}
+  {% if paginator.previous_page %}
+    {% if paginator.previous_page == 1 %}
+      <a class="toss-pagination__btn toss-pagination__btn--arrow" href="{{ first_page_path }}" aria-label="이전 페이지">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
     {% else %}
-    <li><a href="#" class="disabled"><span aria-hidden="true">{{ site.data.ui-text[site.locale].pagination_previous | default: "Previous" }}</span></a></li>
+      <a class="toss-pagination__btn toss-pagination__btn--arrow" href="{{ site.paginate_path | replace: ':num', paginator.previous_page | replace: '//', '/' | relative_url }}" aria-label="이전 페이지">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
     {% endif %}
+  {% else %}
+    <span class="toss-pagination__btn toss-pagination__btn--arrow is-disabled" aria-disabled="true" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="18" height="18"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </span>
+  {% endif %}
 
-    {% comment %} First page {% endcomment %}
-    {% if paginator.page == 1 %}
-      <li><a href="#" class="disabled current">1</a></li>
+  {% comment %} First page {% endcomment %}
+  {% if paginator.page == 1 %}
+    <span class="toss-pagination__btn is-current" aria-current="page">1</span>
+  {% else %}
+    <a class="toss-pagination__btn" href="{{ first_page_path }}">1</a>
+  {% endif %}
+
+  {% assign page_start = 2 %}
+  {% if paginator.page > 4 %}
+    {% assign page_start = paginator.page | minus: 2 %}
+    <span class="toss-pagination__ellipsis" aria-hidden="true">…</span>
+  {% endif %}
+
+  {% assign page_end = paginator.total_pages | minus: 1 %}
+  {% assign pages_to_end = paginator.total_pages | minus: paginator.page %}
+  {% if pages_to_end > 4 %}
+    {% assign page_end = paginator.page | plus: 2 %}
+  {% endif %}
+
+  {% for index in (page_start..page_end) %}
+    {% if index == paginator.page %}
+      <span class="toss-pagination__btn is-current" aria-current="page">{{ index }}</span>
     {% else %}
-      <li><a href="{{ first_page_path }}">1</a></li>
+      <a class="toss-pagination__btn" href="{{ site.paginate_path | replace: ':num', index | relative_url }}">{{ index }}</a>
     {% endif %}
+  {% endfor %}
 
-    {% assign page_start = 2 %}
-    {% if paginator.page > 4 %}
-      {% assign page_start = paginator.page | minus: 2 %}
-      {% comment %} Ellipsis for truncated links {% endcomment %}
-      <li><a href="#" class="disabled">&hellip;</a></li>
-    {% endif %}
+  {% if pages_to_end > 3 %}
+    <span class="toss-pagination__ellipsis" aria-hidden="true">…</span>
+  {% endif %}
 
-    {% assign page_end = paginator.total_pages | minus: 1 %}
-    {% assign pages_to_end = paginator.total_pages | minus: paginator.page %}
-    {% if pages_to_end > 4 %}
-      {% assign page_end = paginator.page | plus: 2 %}
-    {% endif %}
-
-    {% for index in (page_start..page_end) %}
-      {% if index == paginator.page %}
-        <li><a href="{{ site.paginate_path | replace: ':num', index | replace: '//', '/' | relative_url }}" class="disabled current">{{ index }}</a></li>
-      {% else %}
-        {% comment %} Distance from current page and this link {% endcomment %}
-        {% assign dist = paginator.page | minus: index %}
-        {% if dist < 0 %}
-          {% comment %} Distance must be a positive value {% endcomment %}
-          {% assign dist = 0 | minus: dist %}
-        {% endif %}
-        <li><a href="{{ site.paginate_path | replace: ':num', index | relative_url }}">{{ index }}</a></li>
-      {% endif %}
-    {% endfor %}
-
-    {% comment %} Ellipsis for truncated links {% endcomment %}
-    {% if pages_to_end > 3 %}
-      <li><a href="#" class="disabled">&hellip;</a></li>
-    {% endif %}
-
+  {% comment %} Last page (only if more than one) {% endcomment %}
+  {% if paginator.total_pages > 1 %}
     {% if paginator.page == paginator.total_pages %}
-      <li><a href="#" class="disabled current">{{ paginator.page }}</a></li>
+      <span class="toss-pagination__btn is-current" aria-current="page">{{ paginator.page }}</span>
     {% else %}
-      <li><a href="{{ site.paginate_path | replace: ':num', paginator.total_pages | replace: '//', '/' | relative_url }}">{{ paginator.total_pages }}</a></li>
+      <a class="toss-pagination__btn" href="{{ site.paginate_path | replace: ':num', paginator.total_pages | replace: '//', '/' | relative_url }}">{{ paginator.total_pages }}</a>
     {% endif %}
+  {% endif %}
 
-    {% comment %} Link next page {% endcomment %}
-    {% if paginator.next_page %}
-      <li><a href="{{ site.paginate_path | replace: ':num', paginator.next_page | replace: '//', '/' | relative_url }}">{{ site.data.ui-text[site.locale].pagination_next | default: "Next" }}</a></li>
-    {% else %}
-      <li><a href="#" class="disabled"><span aria-hidden="true">{{ site.data.ui-text[site.locale].pagination_next | default: "Next" }}</span></a></li>
-    {% endif %}
-  </ul>
+  {% comment %} Next arrow {% endcomment %}
+  {% if paginator.next_page %}
+    <a class="toss-pagination__btn toss-pagination__btn--arrow" href="{{ site.paginate_path | replace: ':num', paginator.next_page | replace: '//', '/' | relative_url }}" aria-label="다음 페이지">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  {% else %}
+    <span class="toss-pagination__btn toss-pagination__btn--arrow is-disabled" aria-disabled="true" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="18" height="18"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </span>
+  {% endif %}
 </nav>
 {% endif %}
