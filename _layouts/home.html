@@ -17,58 +17,103 @@ layout: archive
   {% assign postlist = posts %}
 {% endif %}
 
-{% comment %} Build unique category list for filter chips {% endcomment %}
+{% comment %} Popular posts: configurable in _config.yml > popular_posts (urls), else fallback to most recent 5 {% endcomment %}
+{% assign popular_posts = '' | split: '' %}
+{% if site.popular_posts %}
+  {% for url in site.popular_posts %}
+    {% for post in posts %}
+      {% if post.url == url %}
+        {% assign popular_posts = popular_posts | push: post %}
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
+{% else %}
+  {% assign popular_posts = posts | slice: 0, 5 %}
+{% endif %}
+
+{% comment %} Build unique category list for filter chips, drop empty/General {% endcomment %}
 {% assign all_categories = '' | split: '' %}
 {% for post in posts %}
   {% for cat in post.categories %}
-    {% unless all_categories contains cat %}
-      {% assign all_categories = all_categories | push: cat %}
+    {% assign cat_lower = cat | downcase %}
+    {% unless cat_lower == 'general' or cat == '' %}
+      {% unless all_categories contains cat %}
+        {% assign all_categories = all_categories | push: cat %}
+      {% endunless %}
     {% endunless %}
   {% endfor %}
 {% endfor %}
 {% assign all_categories = all_categories | sort %}
 
-<section class="toss-hero">
-  <h1 class="toss-hero__title">DEV Archiving</h1>
-  <p class="toss-hero__subtitle">Backend Developer 곽철민의 기술 블로그</p>
-</section>
+<div class="toss-page">
+  <header class="toss-pageHeader">
+    <h1 class="toss-pageHeader__title">전체 아티클</h1>
+  </header>
 
-{% if all_categories.size > 0 %}
-<nav class="toss-filter" aria-label="카테고리 필터">
-  <button type="button" class="toss-chip is-active" data-filter="__all">전체</button>
-  {% for cat in all_categories %}
-    <button type="button" class="toss-chip" data-filter="{{ cat | downcase }}">{{ cat }}</button>
-  {% endfor %}
-</nav>
-{% endif %}
-
-<div id="main" role="main">
-  <ul class="toss-list" id="toss-list">
-    {% for post in postlist %}
-      {% assign post_cat = post.categories | first | default: 'General' %}
-
-      <li class="toss-list__item" data-categories="{{ post.categories | join: ',' | downcase }}">
-        <a class="toss-list__link" href="{{ post.url | relative_url }}">
-          <span class="toss-list__category">{{ post_cat }}</span>
-          <h2 class="toss-list__title">{{ post.title | markdownify | strip_html }}</h2>
-          {% if post.excerpt %}
-            <p class="toss-list__excerpt">{{ post.excerpt | markdownify | strip_html | truncate: 160 }}</p>
-          {% endif %}
-          <div class="toss-list__meta">
-            <span>{{ site.author.name | default: '곽철민' }}</span>
-            <span class="toss-list__dot" aria-hidden="true">·</span>
-            <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y. %-m. %-d." }}</time>
-          </div>
-        </a>
-      </li>
+  {% if all_categories.size > 0 %}
+  <nav class="toss-filter" aria-label="카테고리 필터">
+    <button type="button" class="toss-chip is-active" data-filter="__all">전체</button>
+    {% for cat in all_categories %}
+      <button type="button" class="toss-chip" data-filter="{{ cat | downcase }}">{{ cat }}</button>
     {% endfor %}
-  </ul>
-
-  <p class="toss-empty" id="toss-empty" hidden>해당 카테고리에 게시물이 없습니다.</p>
-
-  {% if paginator %}
-    {% include paginator.html %}
+  </nav>
   {% endif %}
+
+  <div id="main" class="toss-layout" role="main">
+    <div class="toss-layout__main">
+      <ul class="toss-list" id="toss-list">
+        {% for post in postlist %}
+          {% assign post_cat = post.categories | first %}
+          {% assign cat_lower = post_cat | downcase %}
+          {% if cat_lower == 'general' %}
+            {% assign post_cat = nil %}
+          {% endif %}
+
+          <li class="toss-list__item" data-categories="{{ post.categories | join: ',' | downcase }}">
+            <a class="toss-list__link" href="{{ post.url | relative_url }}">
+              <div class="toss-list__pills">
+                {% if post_cat %}
+                  <span class="toss-pill toss-pill--category">{{ post_cat }}</span>
+                {% endif %}
+                <span class="toss-pill toss-pill--author">{{ site.author.name | default: '곽철민' }}</span>
+              </div>
+              <h2 class="toss-list__title">{{ post.title | markdownify | strip_html }}</h2>
+              {% if post.excerpt %}
+                <p class="toss-list__excerpt">{{ post.excerpt | markdownify | strip_html | truncate: 160 }}</p>
+              {% endif %}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+
+      <p class="toss-empty" id="toss-empty" hidden>해당 카테고리에 게시물이 없습니다.</p>
+
+      {% if paginator %}
+        {% include paginator.html %}
+      {% endif %}
+    </div>
+
+    {% if popular_posts.size > 0 %}
+    <aside class="toss-layout__aside">
+      <div class="toss-popular">
+        <h3 class="toss-popular__title">인기 있는 글</h3>
+        <ol class="toss-popular__list">
+          {% for post in popular_posts %}
+          <li class="toss-popular__item">
+            <a class="toss-popular__link" href="{{ post.url | relative_url }}">
+              <span class="toss-popular__rank">{{ forloop.index }}</span>
+              <div class="toss-popular__body">
+                <p class="toss-popular__heading">{{ post.title | markdownify | strip_html }}</p>
+                <p class="toss-popular__author">{{ site.author.name | default: '곽철민' }}</p>
+              </div>
+            </a>
+          </li>
+          {% endfor %}
+        </ol>
+      </div>
+    </aside>
+    {% endif %}
+  </div>
 </div>
 
 <script>
