@@ -1,58 +1,77 @@
 // =============================================
-//  곽철민 개발 블로그 - 전체 페이지 적용
+//  DEV Archive - Toss Style (matches toss.tech)
+//  곽철민 개발 블로그
 // =============================================
 
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap');
-
-// ── Variables ──────────────────────────────
+// ── Toss tokens (kept here so they are part of compiled main.css) ──
 :root {
-  --blue: #1B64DA;
-  --blue-light: #EBF1FD;
-  --blue-mid: #5B94E9;
-  --gray-50: #F8F9FA;
-  --gray-100: #F1F3F5;
-  --gray-200: #E9ECEF;
-  --gray-400: #ADB5BD;
-  --gray-500: #868E96;
-  --gray-600: #6C757D;
-  --gray-700: #495057;
-  --gray-800: #343A40;
-  --gray-900: #212529;
+  --tg-900: #191F28;
+  --tg-800: #333D4B;
+  --tg-700: #4E5968;
+  --tg-600: #6B7684;
+  --tg-500: #8B95A1;
+  --tg-400: #B0B8C1;
+  --tg-300: #D1D6DB;
+  --tg-200: #E5E8EB;
+  --tg-100: #F2F4F6;
+  --tg-50:  #F9FAFB;
+  --tg-white: #FFFFFF;
+  --tg-blue: #3182F6;
+  --tg-blue-bg: #EAF2FE;
+
+  --blue: #3182F6;
+  --blue-light: #EAF2FE;
+  --blue-mid: #4593FC;
+  --gray-50:  #F9FAFB;
+  --gray-100: #F2F4F6;
+  --gray-200: #E5E8EB;
+  --gray-300: #D1D6DB;
+  --gray-400: #B0B8C1;
+  --gray-500: #8B95A1;
+  --gray-600: #6B7684;
+  --gray-700: #4E5968;
+  --gray-800: #333D4B;
+  --gray-900: #191F28;
   --white: #FFFFFF;
-  --radius: 20px;
-  --radius-sm: 12px;
+
+  --radius: 16px;
+  --radius-md: 14px;
+  --radius-sm: 10px;
   --radius-xs: 8px;
 }
 
-// ── Base ───────────────────────────────────
-html {
-  font-size: 16px;
-}
+// ── Base ──
+html { font-size: 16px; }
 
 body {
-  font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
-  background: var(--gray-50) !important;
-  color: var(--gray-900) !important;
-  line-height: 1.7 !important;
+  font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont,
+               system-ui, Roboto, 'Helvetica Neue', 'Segoe UI',
+               'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif !important;
+  background: #FFFFFF !important;
+  color: #191F28 !important;
+  line-height: 1.5 !important;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-// ── Navigation (Masthead) ──────────────────
+a { color: inherit; text-decoration: none; }
+
+// ── Masthead / Nav ──
 .masthead {
-  background: rgba(255, 255, 255, 0.88) !important;
+  background: rgba(255, 255, 255, 0.92) !important;
   backdrop-filter: blur(20px) !important;
   -webkit-backdrop-filter: blur(20px) !important;
-  border-bottom: 1px solid var(--gray-200) !important;
+  border-bottom: 1px solid var(--tg-100) !important;
   box-shadow: none !important;
   position: sticky !important;
   top: 0 !important;
   z-index: 100 !important;
 
   &__inner-wrap {
-    max-width: 1100px !important;
+    max-width: 1200px !important;
     margin: 0 auto !important;
-    padding: 0 28px !important;
-    height: 60px !important;
+    padding: 0 24px !important;
+    height: 64px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: space-between !important;
@@ -63,50 +82,72 @@ body {
 .site-title {
   font-size: 18px !important;
   font-weight: 700 !important;
-  color: var(--gray-900) !important;
-  letter-spacing: -0.5px !important;
+  color: var(--tg-900) !important;
+  letter-spacing: -0.4px !important;
   text-decoration: none !important;
 
-  &:visited { color: var(--gray-900) !important; }
-  &:hover { color: var(--blue) !important; }
+  &:visited { color: var(--tg-900) !important; }
+  &:hover { color: var(--tg-blue) !important; }
 }
 
 .greedy-nav {
   background: transparent !important;
 
   a {
-    font-size: 14px !important;
+    font-size: 15px !important;
     font-weight: 500 !important;
-    color: var(--gray-600) !important;
+    color: var(--tg-700) !important;
     padding: 6px 14px !important;
     border-radius: var(--radius-xs) !important;
-    transition: all 0.15s ease !important;
+    transition: background 0.15s, color 0.15s !important;
 
     &:hover {
-      background: var(--gray-100) !important;
-      color: var(--gray-900) !important;
+      background: var(--tg-100) !important;
+      color: var(--tg-900) !important;
     }
   }
 
   .visible-links a:before { display: none !important; }
 
   .hidden-links {
-    background: var(--white) !important;
-    border: 1px solid var(--gray-200) !important;
-    border-radius: var(--radius-sm) !important;
+    background: var(--tg-white) !important;
+    border: 1px solid var(--tg-200) !important;
+    border-radius: var(--radius) !important;
     box-shadow: 0 8px 24px rgba(0,0,0,0.08) !important;
   }
 
-  button.greedy-nav__toggle {
-    color: var(--gray-600) !important;
-  }
+  button.greedy-nav__toggle { color: var(--tg-700) !important; }
 }
 
-// ── Layout Wrappers ────────────────────────
+// ── Layout overrides for home ──
+.layout--home {
+  #main {
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    width: 100% !important;
+    float: none !important;
+  }
+
+  .archive {
+    width: 100% !important;
+    float: none !important;
+    padding: 0 !important;
+  }
+
+  .archive__subtitle,
+  .initial-content > h1.page__title,
+  .archive > h1.page__title { display: none !important; }
+
+  .sidebar { display: none !important; }
+}
+
+// ── Default #main for non-home pages ──
 #main {
-  max-width: 1100px !important;
+  max-width: 1080px !important;
   margin: 0 auto !important;
-  padding: 32px 28px 80px !important;
+  padding: 32px 24px 80px !important;
   float: none !important;
   width: 100% !important;
 }
@@ -115,307 +156,416 @@ body {
   float: none !important;
   width: 100% !important;
   padding-right: 0 !important;
+}
 
-  // 포스트 상세 페이지: 사이드바 있을 때
-  @media (min-width: 1024px) {
-    &__content {
-      float: none;
-    }
+// ====================================================
+//  TOSS HOME (전체 아티클) STYLES
+// ====================================================
+
+// page wrapper (same width as toss.tech)
+.toss-page {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 24px 96px;
+}
+
+// 2-column layout (main + popular sidebar)
+.toss-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 296px;
+  gap: 40px;
+  align-items: start;
+  padding-top: 64px;
+}
+
+.toss-layout__main {
+  min-width: 0;
+  width: 100%;
+  text-align: left;
+}
+
+.toss-layout__aside {
+  position: sticky;
+  top: 88px;
+  align-self: start;
+}
+
+@media (max-width: 1024px) {
+  .toss-layout {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding-top: 40px;
   }
+  .toss-layout__aside { position: static; }
 }
 
-// ── Sidebar (Author Profile) ───────────────
-.sidebar {
-  opacity: 1 !important;
-  float: none !important;
-
-  &.sticky {
-    overflow: visible !important;
-  }
+// page header ("전체 아티클")
+.toss-pageHeader {
+  padding: 0 0 20px;
+  text-align: left;
 }
 
-.author__avatar {
-  display: block !important;
-  margin-bottom: 16px !important;
-
-  img {
-    width: 80px !important;
-    height: 80px !important;
-    border-radius: 24px !important;
-    border: 2px solid var(--gray-200) !important;
-    object-fit: cover !important;
-    box-shadow: none !important;
-    padding: 0 !important;
-  }
+.toss-pageHeader__title {
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  color: #191F28 !important;
+  line-height: 1.3;
+  margin: 0;
+  text-align: left;
 }
 
-.author__content {
-  text-align: left !important;
-  padding: 0 !important;
+@media (max-width: 768px) {
+  .toss-page { padding: 0 20px 80px; }
+  .toss-pageHeader__title { font-size: 24px; letter-spacing: -0.7px; }
 }
 
-.author__name {
-  font-size: 22px !important;
-  font-weight: 700 !important;
-  color: var(--gray-900) !important;
-  letter-spacing: -0.6px !important;
-  margin: 0 0 4px !important;
-}
-
-.author__bio {
-  font-size: 14px !important;
-  color: var(--gray-600) !important;
-  font-weight: 400 !important;
-  margin: 0 0 14px !important;
-  line-height: 1.5 !important;
-}
-
-// 경력/재직 카드 (custom)
-.author__career-card {
-  display: inline-flex;
-  align-items: center;
-  background: var(--white);
-  border: 1px solid var(--gray-200);
-  border-radius: 14px;
-  overflow: hidden;
-  margin-bottom: 14px;
-
-  .career-item {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    padding: 9px 15px;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--gray-800);
-
-    .career-icon { font-size: 14px; }
-    .career-highlight { color: var(--blue); font-weight: 600; }
-  }
-
-  .career-divider {
-    width: 1px;
-    height: 18px;
-    background: var(--gray-200);
-    flex-shrink: 0;
-  }
-}
-
-// 태그 배지
-.author__tags {
+// filter chips
+.toss-filter {
   display: flex;
   flex-wrap: wrap;
-  gap: 7px;
-  margin-bottom: 20px;
+  gap: 8px;
+  padding: 0 0 28px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
 
-  .author__tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
+.toss-chip {
+  flex: 0 0 auto;
+  appearance: none;
+  border: 1px solid var(--tg-200);
+  background: var(--tg-white);
+  color: var(--tg-700);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+  padding: 8px 16px;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  white-space: nowrap;
+  font-family: inherit;
+  line-height: 1.2;
+
+  &:hover {
+    background: var(--tg-100);
+    color: var(--tg-900);
+  }
+
+  &.is-active {
+    background: var(--tg-900);
+    color: var(--tg-white);
+    border-color: var(--tg-900);
+  }
+}
+
+@media (max-width: 768px) {
+  .toss-filter { padding: 0 0 20px; flex-wrap: nowrap; }
+}
+
+// article list (text only, no images)
+.toss-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  &__item {
+    border-bottom: 1px solid var(--tg-100);
+    list-style: none;
+
+    &:first-child { border-top: 1px solid var(--tg-100); }
+  }
+
+  &__link {
+    display: block;
+    width: 100%;
+    padding: 28px 0;
+    text-align: left;
+    text-decoration: none !important;
+    color: inherit !important;
+    transition: opacity 0.15s;
+
+    &:hover { opacity: 0.78; }
+  }
+
+  &__pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 14px;
+    justify-content: flex-start;
+  }
+
+  &__title {
+    font-size: 19px;
+    font-weight: 700;
+    color: #191F28 !important;
+    line-height: 1.45;
+    letter-spacing: -0.5px;
+    margin: 0 0 8px;
+    text-align: left;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: keep-all;
+  }
+
+  &__excerpt {
+    font-size: 15px;
+    color: #4E5968 !important;
+    line-height: 1.55;
+    letter-spacing: -0.3px;
+    margin: 0;
+    text-align: left;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: keep-all;
+  }
+}
+
+@media (max-width: 768px) {
+  .toss-list__link { padding: 24px 0; }
+  .toss-list__title { font-size: 17px; letter-spacing: -0.4px; }
+  .toss-list__excerpt { font-size: 14px; }
+}
+
+// pills (Engineering blue, author gray)
+.toss-pill {
+  display: inline-flex;
+  align-items: center;
+  height: 26px;
+  padding: 0 10px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+  line-height: 1;
+  white-space: nowrap;
+
+  &--category {
+    background: var(--tg-blue-bg);
+    color: var(--tg-blue);
+  }
+
+  &--author {
+    background: var(--tg-100);
+    color: var(--tg-800);
+  }
+}
+
+// popular sidebar
+.toss-popular {
+  background: var(--tg-50);
+  border-radius: 16px;
+  padding: 24px 24px 16px;
+
+  &__title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--tg-600);
+    letter-spacing: -0.2px;
+    margin: 0 0 16px;
+  }
+
+  &__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__item {
+    list-style: none;
+
+    & + & { border-top: 1px solid var(--tg-200); }
+  }
+
+  &__link {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 0;
+    text-decoration: none !important;
+    color: inherit !important;
+    transition: opacity 0.15s;
+
+    &:hover { opacity: 0.7; }
+  }
+
+  &__rank {
+    flex: 0 0 auto;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--tg-700);
+    width: 14px;
+    text-align: center;
+    line-height: 1.5;
+    letter-spacing: -0.2px;
+  }
+
+  &__body {
+    min-width: 0;
+    flex: 1;
+  }
+
+  &__heading {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--tg-900);
+    line-height: 1.5;
+    letter-spacing: -0.3px;
+    margin: 0 0 4px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: keep-all;
+  }
+
+  &__author {
     font-size: 12px;
     font-weight: 500;
-    padding: 5px 12px;
-    border-radius: 100px;
-    border: 1px solid;
+    color: var(--tg-500);
+    letter-spacing: -0.2px;
+    margin: 0;
+  }
+}
+
+// empty state
+.toss-empty {
+  text-align: center;
+  padding: 80px 24px;
+  font-size: 14px;
+  color: var(--tg-500);
+}
+
+// pagination (Toss style)
+.toss-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin: 56px 0 24px;
+  flex-wrap: wrap;
+
+  &__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    height: 40px;
+    padding: 0 12px;
+    border-radius: 12px;
+    border: 1px solid transparent;
+    background: transparent;
+    color: var(--tg-700);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: -0.2px;
+    text-decoration: none !important;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    font-family: inherit;
     line-height: 1;
 
-    &--blue {
-      background: var(--blue-light);
-      color: var(--blue);
-      border-color: rgba(27, 100, 218, 0.15);
+    &:hover {
+      background: var(--tg-100);
+      color: var(--tg-900);
     }
 
-    &--gray {
-      background: var(--gray-100);
-      color: var(--gray-600);
-      border-color: var(--gray-200);
+    &.is-current {
+      background: var(--tg-900);
+      color: var(--tg-white);
+      font-weight: 700;
+      cursor: default;
+    }
+
+    &--arrow {
+      color: var(--tg-700);
+      padding: 0;
+      width: 40px;
+
+      svg { display: block; }
+    }
+
+    &.is-disabled {
+      color: var(--tg-300);
+      cursor: not-allowed;
+      pointer-events: none;
     }
   }
-}
 
-.author__urls-wrapper {
-  margin-top: 4px !important;
-
-  button {
-    display: none !important; // 모바일 토글 제거, 항상 노출
+  &__ellipsis {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 24px;
+    height: 40px;
+    color: var(--tg-400);
+    font-size: 15px;
+    user-select: none;
   }
 }
 
-.author__urls {
-  display: flex !important;
-  flex-direction: column !important;
-  background: var(--white) !important;
-  border: 1px solid var(--gray-200) !important;
-  border-radius: var(--radius) !important;
-  padding: 4px 16px !important;
-  box-shadow: none !important;
-  position: static !important;
-
-  li {
-    border-bottom: 1px solid var(--gray-100) !important;
-    padding: 9px 0 !important;
-
-    &:last-child { border: none !important; }
-  }
-
-  a {
-    font-size: 13px !important;
-    color: var(--gray-700) !important;
-    font-weight: 500 !important;
-    text-decoration: none !important;
-    display: flex !important;
-    align-items: center !important;
-    gap: 8px !important;
-    transition: color 0.15s !important;
-
-    &:hover { color: var(--blue) !important; }
-
-    i, svg {
-      font-size: 14px !important;
-      color: var(--gray-400) !important;
-      width: 16px !important;
-    }
-  }
-}
-
-// ── Home: Hero Section ─────────────────────
-.hero-section {
-  display: flex;
-  align-items: flex-start;
-  gap: 24px;
-  padding: 12px 0 36px;
-  border-bottom: 1px solid var(--gray-200);
-  margin-bottom: 32px;
-}
-
-// ── Post List (Archive) ────────────────────
-.archive {
-  h1.page__title {
-    font-size: 22px !important;
-    font-weight: 700 !important;
-    color: var(--gray-900) !important;
-    letter-spacing: -0.5px !important;
-    margin-bottom: 20px !important;
-    border: none !important;
-    padding: 0 !important;
-  }
-}
-
-.list__item {
-  background: var(--white) !important;
-  border: 1px solid var(--gray-200) !important;
-  border-radius: var(--radius) !important;
-  padding: 22px 28px !important;
-  margin-bottom: 12px !important;
-  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s !important;
-  box-shadow: none !important;
-
-  &:hover {
-    border-color: var(--blue-mid) !important;
-    box-shadow: 0 4px 20px rgba(27, 100, 218, 0.08) !important;
-    transform: translateY(-1px) !important;
-  }
-
-  .archive__item {
-    display: block;
-  }
-}
-
-.archive__item-title {
-  font-size: 16px !important;
-  font-weight: 700 !important;
-  color: var(--gray-900) !important;
-  letter-spacing: -0.3px !important;
-  margin: 0 0 8px !important;
-  line-height: 1.4 !important;
-
-  a {
-    color: inherit !important;
-    text-decoration: none !important;
-
-    &:hover { color: var(--blue) !important; }
-
-    // 링크 fix: visited도 같은 색상
-    &:visited { color: var(--gray-900) !important; }
-    &:visited:hover { color: var(--blue) !important; }
-  }
-}
-
-.archive__item-excerpt {
-  font-size: 14px !important;
-  color: var(--gray-600) !important;
-  line-height: 1.6 !important;
-  margin: 0 0 10px !important;
-  display: -webkit-box !important;
-  -webkit-line-clamp: 2 !important;
-  -webkit-box-orient: vertical !important;
-  overflow: hidden !important;
-}
-
-.page__meta {
-  font-size: 12px !important;
-  color: var(--gray-400) !important;
-  margin: 0 !important;
-
-  time { color: var(--gray-400) !important; }
-}
-
-// 카테고리 배지
-.page__taxonomy-item {
-  display: inline-block !important;
-  font-size: 11px !important;
-  font-weight: 600 !important;
-  color: var(--blue) !important;
-  background: var(--blue-light) !important;
-  padding: 3px 10px !important;
-  border-radius: 6px !important;
-  margin: 0 4px 4px 0 !important;
-  text-decoration: none !important;
-  border: 1px solid rgba(27, 100, 218, 0.15) !important;
-
-  &:hover {
-    background: var(--blue) !important;
-    color: var(--white) !important;
-  }
-}
-
-// ── Pagination ─────────────────────────────
+// legacy archive pagination (other pages still use ul/li markup)
 .pagination {
   display: flex !important;
   justify-content: center !important;
-  gap: 6px !important;
+  gap: 4px !important;
   margin-top: 32px !important;
   border: none !important;
 
-  &--pager {
-    width: 36px !important;
-    height: 36px !important;
-    border-radius: 10px !important;
-    border: 1px solid var(--gray-200) !important;
-    background: var(--white) !important;
-    font-size: 14px !important;
-    font-weight: 500 !important;
-    color: var(--gray-600) !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
+  ul {
+    display: flex;
+    gap: 4px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  ul li a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    height: 40px;
+    padding: 0 12px;
+    border-radius: 12px;
+    background: transparent;
+    color: var(--tg-700) !important;
+    font-size: 15px;
+    font-weight: 500;
     text-decoration: none !important;
-    transition: all 0.15s !important;
-    padding: 0 !important;
+    transition: background 0.15s, color 0.15s;
 
     &:hover {
-      border-color: var(--blue) !important;
-      color: var(--blue) !important;
+      background: var(--tg-100) !important;
+      color: var(--tg-900) !important;
+    }
+
+    &.current {
+      background: var(--tg-900) !important;
+      color: var(--tg-white) !important;
+      font-weight: 700;
     }
 
     &.disabled {
-      opacity: 0.35 !important;
-      pointer-events: none !important;
+      color: var(--tg-300) !important;
+      cursor: not-allowed;
+      pointer-events: none;
     }
   }
 }
 
-// ── Post Detail Page ───────────────────────
+// ====================================================
+//  POST DETAIL & SHARED PAGE STYLES
+// ====================================================
+
 .page__hero {
   background: transparent !important;
 
@@ -426,71 +576,66 @@ body {
   }
 }
 
-// 포스트 헤더
 .page__title {
-  font-size: 28px !important;
+  font-size: 30px !important;
   font-weight: 700 !important;
-  color: var(--gray-900) !important;
-  letter-spacing: -0.7px !important;
+  color: var(--tg-900) !important;
+  letter-spacing: -0.8px !important;
   line-height: 1.3 !important;
   margin-bottom: 16px !important;
 }
 
-// 포스트 본문
 .page__content {
-  font-size: 15px !important;
-  line-height: 1.85 !important;
-  color: var(--gray-800) !important;
+  font-size: 17px !important;
+  line-height: 1.8 !important;
+  color: var(--tg-800) !important;
+  letter-spacing: -0.3px !important;
 
   p { margin-bottom: 1.3em !important; }
 
   h1, h2, h3, h4 {
     font-weight: 700 !important;
-    color: var(--gray-900) !important;
-    letter-spacing: -0.4px !important;
+    color: var(--tg-900) !important;
+    letter-spacing: -0.5px !important;
     line-height: 1.3 !important;
   }
 
   h2 {
-    font-size: 22px !important;
+    font-size: 24px !important;
     margin: 2.2em 0 0.7em !important;
     padding-bottom: 8px !important;
-    border-bottom: 2px solid var(--gray-100) !important;
+    border-bottom: 2px solid var(--tg-100) !important;
   }
 
   h3 {
-    font-size: 18px !important;
+    font-size: 20px !important;
     margin: 1.8em 0 0.5em !important;
   }
 
   h4 {
-    font-size: 15px !important;
+    font-size: 16px !important;
     margin: 1.4em 0 0.4em !important;
   }
 
   a {
-    color: var(--blue) !important;
+    color: var(--tg-blue) !important;
     text-decoration: underline !important;
     text-underline-offset: 3px !important;
-    text-decoration-color: rgba(27, 100, 218, 0.35) !important;
+    text-decoration-color: rgba(49, 130, 246, 0.35) !important;
 
-    &:hover {
-      text-decoration-color: var(--blue) !important;
-    }
+    &:hover { text-decoration-color: var(--tg-blue) !important; }
   }
 
-  // 인라인 코드
   code:not([class*="language-"]) {
-    background: var(--gray-100) !important;
-    color: var(--blue) !important;
+    background: var(--tg-100) !important;
+    color: var(--tg-blue) !important;
     padding: 2px 7px !important;
     border-radius: 6px !important;
     font-size: 0.875em !important;
-    border: 1px solid var(--gray-200) !important;
+    border: 1px solid var(--tg-200) !important;
     font-family: 'Fira Code', 'JetBrains Mono', 'Consolas', monospace !important;
   }
 
-  // 코드 블록
   pre {
     background: #1e2127 !important;
     border: none !important;
@@ -510,19 +655,17 @@ body {
     }
   }
 
-  // 인용문
   blockquote {
-    border-left: 3px solid var(--blue) !important;
-    background: var(--blue-light) !important;
+    border-left: 3px solid var(--tg-blue) !important;
+    background: var(--tg-blue-bg) !important;
     padding: 14px 20px !important;
     border-radius: 0 var(--radius-sm) var(--radius-sm) 0 !important;
     margin: 1.6em 0 !important;
-    color: var(--gray-700) !important;
+    color: var(--tg-800) !important;
 
     p { margin: 0 !important; }
   }
 
-  // 표
   table {
     border-collapse: collapse !important;
     width: 100% !important;
@@ -530,28 +673,27 @@ body {
     font-size: 14px !important;
     border-radius: var(--radius-sm) !important;
     overflow: hidden !important;
-    border: 1px solid var(--gray-200) !important;
+    border: 1px solid var(--tg-200) !important;
 
     th {
-      background: var(--gray-50) !important;
-      color: var(--gray-700) !important;
+      background: var(--tg-50) !important;
+      color: var(--tg-700) !important;
       font-weight: 600 !important;
       padding: 11px 16px !important;
-      border-bottom: 2px solid var(--gray-200) !important;
+      border-bottom: 2px solid var(--tg-200) !important;
       text-align: left !important;
     }
 
     td {
       padding: 10px 16px !important;
-      border-bottom: 1px solid var(--gray-100) !important;
-      color: var(--gray-800) !important;
+      border-bottom: 1px solid var(--tg-100) !important;
+      color: var(--tg-800) !important;
     }
 
     tr:last-child td { border: none !important; }
-    tr:hover td { background: var(--gray-50) !important; }
+    tr:hover td { background: var(--tg-50) !important; }
   }
 
-  // 목록
   ul, ol {
     padding-left: 1.4em !important;
     margin-bottom: 1.2em !important;
@@ -562,43 +704,44 @@ body {
     }
   }
 
-  ul li::marker { color: var(--blue) !important; }
+  ul li::marker { color: var(--tg-blue) !important; }
 
-  // 이미지
   img {
     border-radius: var(--radius-sm) !important;
     box-shadow: 0 2px 12px rgba(0,0,0,0.08) !important;
     max-width: 100% !important;
   }
 
-  // hr
   hr {
     border: none !important;
-    border-top: 2px solid var(--gray-100) !important;
+    border-top: 2px solid var(--tg-100) !important;
     margin: 2em 0 !important;
   }
 }
 
-// ── Breadcrumbs ────────────────────────────
+// ── Breadcrumbs ──
 .breadcrumbs {
   font-size: 12px !important;
   margin-bottom: 16px !important;
-  color: var(--gray-400) !important;
+  color: var(--tg-400) !important;
 
-  ol { padding: 0 !important; list-style: none !important; display: flex !important; gap: 6px !important; }
+  ol {
+    padding: 0 !important;
+    list-style: none !important;
+    display: flex !important;
+    gap: 6px !important;
+  }
 
   a {
-    color: var(--gray-500) !important;
+    color: var(--tg-500) !important;
     text-decoration: none !important;
 
-    &:hover { color: var(--blue) !important; }
+    &:hover { color: var(--tg-blue) !important; }
   }
 }
 
-// ── Tags / Categories Page ─────────────────
-.taxonomy__section {
-  margin-bottom: 40px !important;
-}
+// ── Tags / Categories Page ──
+.taxonomy__section { margin-bottom: 40px !important; }
 
 .taxonomy__index {
   display: flex !important;
@@ -614,64 +757,64 @@ body {
     gap: 6px !important;
     font-size: 13px !important;
     font-weight: 500 !important;
-    color: var(--gray-700) !important;
-    background: var(--white) !important;
-    border: 1px solid var(--gray-200) !important;
+    color: var(--tg-700) !important;
+    background: var(--tg-white) !important;
+    border: 1px solid var(--tg-200) !important;
     padding: 6px 14px !important;
     border-radius: 100px !important;
     text-decoration: none !important;
     transition: all 0.15s !important;
 
     &:hover {
-      border-color: var(--blue) !important;
-      color: var(--blue) !important;
+      border-color: var(--tg-blue) !important;
+      color: var(--tg-blue) !important;
     }
 
     .count {
       font-size: 11px !important;
-      background: var(--blue-light) !important;
-      color: var(--blue) !important;
+      background: var(--tg-blue-bg) !important;
+      color: var(--tg-blue) !important;
       padding: 1px 7px !important;
       border-radius: 100px !important;
     }
   }
 }
 
-// ── Search ─────────────────────────────────
+// ── Search ──
 .search-content {
-  background: var(--white) !important;
+  background: var(--tg-white) !important;
   border-radius: var(--radius) !important;
-  border: 1px solid var(--gray-200) !important;
+  border: 1px solid var(--tg-200) !important;
   padding: 24px 28px !important;
 }
 
 .search-input {
   width: 100% !important;
-  border: 1px solid var(--gray-200) !important;
+  border: 1px solid var(--tg-200) !important;
   border-radius: var(--radius-sm) !important;
   padding: 12px 16px !important;
   font-size: 15px !important;
   font-family: inherit !important;
-  background: var(--gray-50) !important;
+  background: var(--tg-50) !important;
   outline: none !important;
   transition: border-color 0.15s !important;
 
   &:focus {
-    border-color: var(--blue) !important;
-    background: var(--white) !important;
-    box-shadow: 0 0 0 3px var(--blue-light) !important;
+    border-color: var(--tg-blue) !important;
+    background: var(--tg-white) !important;
+    box-shadow: 0 0 0 3px var(--tg-blue-bg) !important;
   }
 }
 
-// ── Footer ─────────────────────────────────
+// ── Footer ──
 .page__footer {
-  background: var(--white) !important;
-  border-top: 1px solid var(--gray-200) !important;
-  color: var(--gray-500) !important;
+  background: var(--tg-white) !important;
+  border-top: 1px solid var(--tg-100) !important;
+  color: var(--tg-600) !important;
   font-size: 13px !important;
   text-align: center !important;
-  padding: 24px 28px !important;
-  margin-top: 0 !important;
+  padding: 32px 24px !important;
+  margin-top: 48px !important;
 
   footer {
     text-align: center !important;
@@ -679,22 +822,21 @@ body {
   }
 
   a {
-    color: var(--gray-600) !important;
+    color: var(--tg-600) !important;
     text-decoration: none !important;
 
-    &:hover { color: var(--blue) !important; }
+    &:hover { color: var(--tg-blue) !important; }
   }
 }
 
-// ── Notices ────────────────────────────────
+// ── Notices / Buttons / Misc ──
 .notice {
   border-radius: var(--radius-sm) !important;
-  border-left: 3px solid var(--blue) !important;
-  background: var(--blue-light) !important;
+  border-left: 3px solid var(--tg-blue) !important;
+  background: var(--tg-blue-bg) !important;
   padding: 14px 18px !important;
 }
 
-// ── Buttons ────────────────────────────────
 .btn {
   border-radius: var(--radius-sm) !important;
   font-family: inherit !important;
@@ -703,73 +845,49 @@ body {
   transition: all 0.15s !important;
 
   &--primary, &.btn--primary {
-    background: var(--blue) !important;
-    border-color: var(--blue) !important;
-    color: var(--white) !important;
+    background: var(--tg-blue) !important;
+    border-color: var(--tg-blue) !important;
+    color: var(--tg-white) !important;
 
-    &:hover {
-      background: #1557c5 !important;
-    }
+    &:hover { background: #2272E5 !important; }
   }
 }
 
-// ── Social Share ───────────────────────────
 .page__share {
   margin-top: 40px !important;
   padding-top: 24px !important;
-  border-top: 2px solid var(--gray-100) !important;
+  border-top: 2px solid var(--tg-100) !important;
 }
 
-// ── Related Posts ──────────────────────────
 .page__related {
-  background: var(--white) !important;
+  background: var(--tg-white) !important;
   border-radius: var(--radius) !important;
-  border: 1px solid var(--gray-200) !important;
+  border: 1px solid var(--tg-200) !important;
   padding: 24px 28px !important;
   margin-top: 40px !important;
 
   h4.page__related-title {
     font-size: 16px !important;
     font-weight: 700 !important;
-    color: var(--gray-900) !important;
+    color: var(--tg-900) !important;
     letter-spacing: -0.3px !important;
     margin-bottom: 16px !important;
     border: none !important;
   }
 }
 
-// ── Responsive ─────────────────────────────
+// ── Responsive (non-home pages) ──
 @media (max-width: 1024px) {
-  #main {
-    padding: 24px 20px 60px !important;
-  }
+  #main { padding: 24px 20px 60px !important; }
 }
 
 @media (max-width: 768px) {
-  #main {
-    padding: 20px 16px 60px !important;
-  }
+  #main { padding: 20px 16px 60px !important; }
 
   .masthead__inner-wrap {
     padding: 0 16px !important;
     height: 56px !important;
   }
 
-  .page__title {
-    font-size: 22px !important;
-  }
-
-  .list__item {
-    padding: 18px 20px !important;
-  }
-
-  .author__career-card {
-    flex-direction: column;
-    width: 100%;
-
-    .career-divider {
-      width: 100%;
-      height: 1px;
-    }
-  }
+  .page__title { font-size: 24px !important; }
 }
