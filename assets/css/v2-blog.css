@@ -238,12 +238,12 @@ nav.greedy-nav,
 }
 
 .toss-list__title {
-  font-size: 24px;
+  font-size: 19px;
   font-weight: 700;
   color: var(--tg-900);
-  line-height: 1.4;
-  letter-spacing: -0.7px;
-  margin: 0 0 10px;
+  line-height: 1.45;
+  letter-spacing: -0.5px;
+  margin: 0 0 8px;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -255,7 +255,7 @@ nav.greedy-nav,
 .toss-list__excerpt {
   font-size: 15px;
   color: var(--tg-700);
-  line-height: 1.6;
+  line-height: 1.55;
   letter-spacing: -0.3px;
   margin: 0;
   display: -webkit-box;
@@ -268,7 +268,7 @@ nav.greedy-nav,
 
 @media (max-width: 768px) {
   .toss-list__link { padding: 24px 0; }
-  .toss-list__title { font-size: 19px; letter-spacing: -0.5px; }
+  .toss-list__title { font-size: 17px; letter-spacing: -0.4px; }
   .toss-list__excerpt { font-size: 14px; }
 }
 
