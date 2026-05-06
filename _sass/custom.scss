@@ -255,7 +255,7 @@ a { color: inherit; text-decoration: none; }
   &.is-active {
     background: var(--tg-blue);
     color: var(--tg-white);
-    border-color: var(--tg-blue);
+    border-color: transparent;
     box-shadow: 0 4px 12px rgba(49, 130, 246, 0.25);
   }
 }
@@ -480,10 +480,16 @@ a { color: inherit; text-decoration: none; }
     }
 
     &.is-current {
-      background: var(--tg-900);
+      background: var(--tg-blue);
       color: var(--tg-white);
       font-weight: 700;
       cursor: default;
+      box-shadow: 0 4px 12px rgba(49, 130, 246, 0.25);
+    }
+
+    &.is-current:hover {
+      background: var(--tg-blue);
+      color: var(--tg-white);
     }
 
     &--arrow {
@@ -550,9 +556,15 @@ a { color: inherit; text-decoration: none; }
     }
 
     &.current {
-      background: var(--tg-900) !important;
+      background: var(--tg-blue) !important;
       color: var(--tg-white) !important;
       font-weight: 700;
+      box-shadow: 0 4px 12px rgba(49, 130, 246, 0.25);
+    }
+
+    &.current:hover {
+      background: var(--tg-blue) !important;
+      color: var(--tg-white) !important;
     }
 
     &.disabled {
