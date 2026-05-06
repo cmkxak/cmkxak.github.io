@@ -4,15 +4,12 @@ layout: archive
 
 {{ content }}
 
-{% assign posts = '' | split: '' %}
-{% for post in site.posts %}
-  {% unless post.hidden %}
-    {% assign posts = posts | push: post %}
-  {% endunless %}
-{% endfor %}
+{% comment %} Build a sorted (newest first) post list, excluding hidden posts {% endcomment %}
+{% assign visible_posts = site.posts | where_exp: 'p', 'p.hidden != true' %}
+{% assign posts = visible_posts | sort: 'date' | reverse %}
 
 {% if paginator %}
-  {% assign postlist = paginator.posts %}
+  {% assign postlist = paginator.posts | sort: 'date' | reverse %}
 {% else %}
   {% assign postlist = posts %}
 {% endif %}
