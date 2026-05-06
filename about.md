@@ -1,97 +1,189 @@
 ---
-layout: page
+layout: about
 title: "About Me"
 permalink: /about/
 ---
 
-# CHEOLMIN KWAK
+<section class="toss-about__hero">
+  <div class="toss-about__avatar">
+    <img src="{{ '/assets/imgs/chulmin.jpg' | relative_url }}" alt="Cheolmin Kwak">
+  </div>
+  <div class="toss-about__intro">
+    <span class="toss-about__role">Backend Engineer · 3년차</span>
+    <h1 class="toss-about__name">CHEOLMIN KWAK</h1>
+    <p class="toss-about__tagline">결제 시스템을 만들고 운영하는 백엔드 엔지니어. 도메인 언어를 함께 설계하는 팀워크를 좋아합니다.</p>
+    <div class="toss-about__contact">
+      <a class="toss-about__contactItem" href="mailto:cmkxak@gmail.com">
+        <span class="toss-about__contactIcon">✉</span>
+        cmkxak@gmail.com
+      </a>
+      <a class="toss-about__contactItem" href="https://github.com/cmkxak" target="_blank" rel="noopener">
+        <span class="toss-about__contactIcon">↗</span>
+        github.com/cmkxak
+      </a>
+      <a class="toss-about__contactItem" href="https://cmkxak.github.io">
+        <span class="toss-about__contactIcon">▤</span>
+        cmkxak.github.io
+      </a>
+    </div>
+  </div>
+</section>
 
-### 📫 Contact
-**Email:** cmkxak@gmail.com  
-**Phone:** +82 10-8707-7697  
+<section class="toss-about__section">
+  <h2 class="toss-about__sectionTitle">Who am I?</h2>
+  <div class="toss-about__bullets">
+    <p>I am a <strong>third-year software engineer</strong> mainly focused on maintaining and developing <strong>payment systems</strong>.</p>
+    <p>Experienced in building and operating <strong>payment and settlement systems</strong>, integrating with various <strong>PG companies</strong>.</p>
+    <p>Skilled in backend development in <strong>Linux and network-isolated environments</strong>.</p>
+    <p>I believe that effective communication starts from sharing a <strong>common domain language</strong> within the team.</p>
+  </div>
+</section>
 
-### 🌐 Channel
-**Blog:** [cmkxak.github.io](http://cmkxak.github.io)  
-**GitHub:** [github.com/cmkxak](https://github.com/cmkxak)
+<section class="toss-about__section">
+  <h2 class="toss-about__sectionTitle">Skills</h2>
+  <div class="toss-about__skills">
+    <div class="toss-about__skillCard">
+      <h3 class="toss-about__skillTitle">Backend</h3>
+      <div class="toss-about__skillChips">
+        <span class="toss-about__chip">Spring Framework</span>
+        <span class="toss-about__chip">Spring Boot</span>
+        <span class="toss-about__chip">Spring Batch</span>
+        <span class="toss-about__chip">JPA</span>
+        <span class="toss-about__chip">MyBatis</span>
+        <span class="toss-about__chip">JUnit5</span>
+        <span class="toss-about__chip">Mockito</span>
+      </div>
+    </div>
+    <div class="toss-about__skillCard">
+      <h3 class="toss-about__skillTitle">Database</h3>
+      <div class="toss-about__skillChips">
+        <span class="toss-about__chip">MySQL</span>
+        <span class="toss-about__chip">Oracle</span>
+      </div>
+    </div>
+    <div class="toss-about__skillCard">
+      <h3 class="toss-about__skillTitle">Frontend</h3>
+      <div class="toss-about__skillChips">
+        <span class="toss-about__chip">HTML / CSS</span>
+        <span class="toss-about__chip">JavaScript</span>
+      </div>
+    </div>
+    <div class="toss-about__skillCard">
+      <h3 class="toss-about__skillTitle">Infrastructure</h3>
+      <div class="toss-about__skillChips">
+        <span class="toss-about__chip">AWS EC2</span>
+        <span class="toss-about__chip">AWS S3</span>
+        <span class="toss-about__chip">Docker</span>
+      </div>
+    </div>
+    <div class="toss-about__skillCard">
+      <h3 class="toss-about__skillTitle">Languages & VCS</h3>
+      <div class="toss-about__skillChips">
+        <span class="toss-about__chip">Java</span>
+        <span class="toss-about__chip">Python</span>
+        <span class="toss-about__chip">Git</span>
+        <span class="toss-about__chip">GitHub</span>
+        <span class="toss-about__chip">GitLab</span>
+      </div>
+    </div>
+  </div>
+</section>
 
----
+<section class="toss-about__section">
+  <h2 class="toss-about__sectionTitle">Work Experience</h2>
+  <ol class="toss-about__timeline">
 
-# 👨🏻‍💻 Who am I?
+    <li class="toss-about__exp">
+      <div class="toss-about__expHead">
+        <h3 class="toss-about__company">Hecto Financial</h3>
+        <span class="toss-about__period">Nov 2025 — Present</span>
+      </div>
+      <p class="toss-about__role-title">Easy Cash Development Team</p>
+      <ul class="toss-about__expList">
+        <li>Developed and maintained <strong>“MyTongjang Pay Service”</strong>.</li>
+      </ul>
+    </li>
 
-- I am a **third-year software engineer** mainly focused on maintaining and developing **payment systems**.  
-- Experienced in building and operating **payment and settlement systems**, integrating with various **PG companies**.  
-- Skilled in backend development in **Linux and network-isolated environments**.  
-- I believe that effective communication starts from sharing a **common domain language** within the team.
+    <li class="toss-about__exp">
+      <div class="toss-about__expHead">
+        <h3 class="toss-about__company">Tmonet</h3>
+        <span class="toss-about__period">Jul 2023 — Nov 2025 · 2y 4mo</span>
+      </div>
+      <p class="toss-about__role-title">Backend Developer (Staff)</p>
+      <ul class="toss-about__expList">
+        <li>Developed and maintained <strong>“Damdam”</strong>, a point recharge & payment system for a transport app with ~200K MAU.</li>
+        <li>Built and operated the <strong>shopping payment system</strong> within the Mobile Tmoney app.</li>
+        <li>Integrated with multiple external <strong>PG companies</strong> — Nicepay, Danal, Online Giftcard, OneStore, WincubeMall, COOCON, Daou Tech, PageOn.</li>
+        <li>Developed a <strong>settlement system</strong> on Spring Batch 4 + MyBatis + Oracle.</li>
+        <li>Improved features in the <strong>internal back-office system</strong>.</li>
+        <li>Extensive experience in <strong>on-premise / Linux / network-isolated</strong> environments.</li>
+      </ul>
+    </li>
 
----
+    <li class="toss-about__exp">
+      <div class="toss-about__expHead">
+        <h3 class="toss-about__company">User Insights</h3>
+        <span class="toss-about__period">Jun 2022 — Aug 2022 · Intern</span>
+      </div>
+      <p class="toss-about__role-title">Service R&D Team</p>
+      <ul class="toss-about__expList">
+        <li>Built a <strong>smart farm data visualization web service</strong> using Spring Boot + Spring Data JPA.</li>
+        <li>Conducted domain analysis and system design for smart farm data.</li>
+        <li>Designed and implemented <strong>server APIs</strong> for crop data.</li>
+        <li>Visualized temperature / light / humidity data using <strong>Chart.js</strong>.</li>
+      </ul>
+    </li>
 
-# 🖥️ Skills
+  </ol>
+</section>
 
-- **Frontend:** HTML/CSS, JavaScript  
-- **Backend:** Spring Framework, Spring Boot, Spring Batch, JPA, MyBatis, MySQL, Oracle, JUnit5, Mockito  
-- **Infrastructure:** AWS (EC2, S3), Docker  
-- **Version Control:** Git, GitHub, GitLab  
-- **Languages:** Java, Python  
+<section class="toss-about__section">
+  <h2 class="toss-about__sectionTitle">Education</h2>
+  <ol class="toss-about__timeline">
 
----
+    <li class="toss-about__exp">
+      <div class="toss-about__expHead">
+        <h3 class="toss-about__company">Jeonbuk National University</h3>
+        <span class="toss-about__period">Mar 2017 — Aug 2023</span>
+      </div>
+      <p class="toss-about__role-title">B.S. in Software Engineering</p>
+      <ul class="toss-about__expList">
+        <li>Student council member (2020 — 2021).</li>
+        <li>Total GPA <strong>3.67 / 4.5</strong> · Major GPA <strong>4.0 / 4.5</strong>.</li>
+      </ul>
+    </li>
 
-# 🏢 Work Experience
+    <li class="toss-about__exp">
+      <div class="toss-about__expHead">
+        <h3 class="toss-about__company">Likelion Back-End School (2nd Cohort)</h3>
+        <span class="toss-about__period">Sep 2022 — Feb 2023</span>
+      </div>
+      <ul class="toss-about__expList">
+        <li>Studied <strong>Java, Spring Boot, Spring Data JPA, SQL</strong> and backend fundamentals.</li>
+        <li>Selected as <strong>Outstanding Student</strong> for the <a href="https://github.com/cmkxak/springboot-sns" target="_blank" rel="noopener">1st individual project</a>.</li>
+        <li>Pair programming and code reviews to enhance code quality.</li>
+      </ul>
+    </li>
 
-### Hecto Financial  
-**Easy Cash Development Team**  
-🗓️ Nov 2025 – Present  
-- Developed and maintained **“MyTongjang Pay Service”**.  
+  </ol>
+</section>
 
----
-
-### Tmonet  
-**Backend Developer (Staff)**  
-🗓️ Jul 2023 – Nov 2025 (2 years 4 months)  
-
-- Developed and maintained **“Damdam”**, a point recharge and payment system for a transport app with ~200K MAU.  
-- Built and operated the **shopping payment system** within the Mobile Tmoney app.  
-- Integrated with multiple external **PG companies** (Nicepay, Danal, Online Giftcard, OneStore, WincubeMall, COOCON, Daou Tech, PageOn).  
-- Developed a **settlement system** based on **Spring Batch 4, MyBatis, and Oracle**.  
-- Improved and enhanced features in the **internal back-office system**.  
-- Gained extensive experience in **on-premise, Linux, and network-isolated** development environments.
-
----
-
-### User Insights  
-**Service R&D Team (Intern)**  
-🗓️ Jun 2022 – Aug 2022  
-
-- Participated in an internal project to build a **smart farm data visualization web service** using Spring Boot and Spring Data JPA.  
-- Conducted **domain analysis and system design** related to smart farm data.  
-- Designed and implemented **server APIs** to provide crop data.  
-- Visualized temperature, light, and humidity data using **Chart.js**.  
-- Learned real-world collaboration through **Yona** and **Git-based** version control tools.
-
----
-
-# 🏆 Awards
-
-- 🥉 Bronze Prize – Jeonbuk National University Capstone Design Competition (Jun 2022)  
-- 🥈 Silver Prize – Korea Information Technology Society Undergraduate Paper Contest (Jun 2022)
-
----
-
-# 🎓 Education
-
-### Jeonbuk National University  
-**B.S. in Software Engineering**  
-🗓️ Mar 2017 – Aug 2023  
-
-- Served as a **student council member** (2020–2021).  
-- **Total GPA:** 3.67 / 4.5  
-- **Major GPA:** 4.0 / 4.5  
-
----
-
-### Likelion Back-End School (2nd Cohort)  
-🗓️ Sep 2022 – Feb 2023  
-
-- Studied **Java, Spring Boot, Spring Data JPA, SQL**, and backend fundamentals.  
-- Selected as an **Outstanding Student** for the [1st Individual Project](https://github.com/cmkxak/springboot-sns).  
-- Experienced **team collaboration** through group projects.  
-- Practiced **pair programming** and **code reviews** to enhance code quality.
+<section class="toss-about__section">
+  <h2 class="toss-about__sectionTitle">Awards</h2>
+  <div class="toss-about__awards">
+    <div class="toss-about__award">
+      <span class="toss-about__awardMedal">🥉</span>
+      <div>
+        <p class="toss-about__awardTitle">Bronze Prize — Capstone Design Competition</p>
+        <p class="toss-about__awardSub">Jeonbuk National University · Jun 2022</p>
+      </div>
+    </div>
+    <div class="toss-about__award">
+      <span class="toss-about__awardMedal">🥈</span>
+      <div>
+        <p class="toss-about__awardTitle">Silver Prize — Undergraduate Paper Contest</p>
+        <p class="toss-about__awardSub">Korea Information Technology Society · Jun 2022</p>
+      </div>
+    </div>
+  </div>
+</section>
