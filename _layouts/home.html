@@ -46,21 +46,21 @@ layout: archive
 {% assign all_categories = all_categories | sort %}
 
 <div class="toss-page">
-  <header class="toss-pageHeader">
-    <h1 class="toss-pageHeader__title">전체 아티클</h1>
-  </header>
-
-  {% if all_categories.size > 0 %}
-  <nav class="toss-filter" aria-label="카테고리 필터">
-    <button type="button" class="toss-chip is-active" data-filter="__all">전체</button>
-    {% for cat in all_categories %}
-      <button type="button" class="toss-chip" data-filter="{{ cat | downcase }}">{{ cat }}</button>
-    {% endfor %}
-  </nav>
-  {% endif %}
-
   <div id="main" class="toss-layout" role="main">
     <div class="toss-layout__main">
+      <header class="toss-pageHeader">
+        <h1 class="toss-pageHeader__title">전체 아티클</h1>
+      </header>
+
+      {% if all_categories.size > 0 %}
+      <nav class="toss-filter" aria-label="카테고리 필터">
+        <button type="button" class="toss-chip is-active" data-filter="__all">전체</button>
+        {% for cat in all_categories %}
+          <button type="button" class="toss-chip" data-filter="{{ cat | downcase }}">{{ cat }}</button>
+        {% endfor %}
+      </nav>
+      {% endif %}
+
       <ul class="toss-list" id="toss-list">
         {% for post in postlist %}
           {% assign post_cat = post.categories | first %}
