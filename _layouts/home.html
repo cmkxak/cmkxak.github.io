@@ -43,36 +43,26 @@ layout: archive
 {% endif %}
 
 <div id="main" role="main">
-  <div class="toss-grid" id="toss-grid">
+  <ul class="toss-list" id="toss-list">
     {% for post in postlist %}
       {% assign post_cat = post.categories | first | default: 'General' %}
-      {% assign cat_slug = post_cat | downcase %}
-      {% assign hash = post.title | size %}
-      {% assign grad_index = hash | modulo: 6 %}
 
-      <article class="toss-card" data-categories="{{ post.categories | join: ',' | downcase }}">
-        <a class="toss-card__link" href="{{ post.url | relative_url }}">
-          <div class="toss-card__thumb toss-card__thumb--g{{ grad_index }}">
-            <span class="toss-card__thumb-label">{{ post_cat }}</span>
-          </div>
-          <div class="toss-card__body">
-            <span class="toss-card__category">{{ post_cat }}</span>
-            <h2 class="toss-card__title">{{ post.title | markdownify | strip_html }}</h2>
-            {% if post.excerpt %}
-              <p class="toss-card__excerpt">{{ post.excerpt | markdownify | strip_html | truncate: 90 }}</p>
-            {% endif %}
-            <div class="toss-card__meta">
-              <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y.%m.%d" }}</time>
-              {% if post.read_time %}
-                <span class="toss-card__dot" aria-hidden="true">·</span>
-                <span>{{ post.read_time }} min read</span>
-              {% endif %}
-            </div>
+      <li class="toss-list__item" data-categories="{{ post.categories | join: ',' | downcase }}">
+        <a class="toss-list__link" href="{{ post.url | relative_url }}">
+          <span class="toss-list__category">{{ post_cat }}</span>
+          <h2 class="toss-list__title">{{ post.title | markdownify | strip_html }}</h2>
+          {% if post.excerpt %}
+            <p class="toss-list__excerpt">{{ post.excerpt | markdownify | strip_html | truncate: 160 }}</p>
+          {% endif %}
+          <div class="toss-list__meta">
+            <span>{{ site.author.name | default: '곽철민' }}</span>
+            <span class="toss-list__dot" aria-hidden="true">·</span>
+            <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y. %-m. %-d." }}</time>
           </div>
         </a>
-      </article>
+      </li>
     {% endfor %}
-  </div>
+  </ul>
 
   <p class="toss-empty" id="toss-empty" hidden>해당 카테고리에 게시물이 없습니다.</p>
 
@@ -84,9 +74,9 @@ layout: archive
 <script>
   (function () {
     var chips = document.querySelectorAll('.toss-chip');
-    var cards = document.querySelectorAll('.toss-card');
+    var items = document.querySelectorAll('.toss-list__item');
     var emptyMsg = document.getElementById('toss-empty');
-    if (!chips.length || !cards.length) return;
+    if (!chips.length || !items.length) return;
 
     chips.forEach(function (chip) {
       chip.addEventListener('click', function () {
@@ -96,10 +86,10 @@ layout: archive
         chip.classList.add('is-active');
 
         var visibleCount = 0;
-        cards.forEach(function (card) {
-          var cats = card.getAttribute('data-categories') || '';
+        items.forEach(function (item) {
+          var cats = item.getAttribute('data-categories') || '';
           var show = filter === '__all' || cats.split(',').indexOf(filter) !== -1;
-          card.style.display = show ? '' : 'none';
+          item.style.display = show ? '' : 'none';
           if (show) visibleCount++;
         });
 

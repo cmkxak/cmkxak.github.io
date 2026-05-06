@@ -1,51 +1,32 @@
 /* =============================================
    DEV Archive - Toss Style CSS
-   곽철민 개발 블로그
+   곽철민 개발 블로그 (matches toss.tech series page)
    ============================================= */
-
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap');
-
-:root {
-  --blue: #1B64DA;
-  --blue-light: #EBF1FD;
-  --blue-mid: #5B94E9;
-  --gray-50: #F8F9FA;
-  --gray-100: #F1F3F5;
-  --gray-200: #E9ECEF;
-  --gray-300: #DEE2E6;
-  --gray-400: #ADB5BD;
-  --gray-500: #868E96;
-  --gray-600: #6C757D;
-  --gray-700: #495057;
-  --gray-800: #343A40;
-  --gray-900: #212529;
-  --white: #FFFFFF;
-  --radius: 20px;
-  --radius-md: 16px;
-  --radius-sm: 12px;
-  --radius-xs: 8px;
-}
 
 /* ── RESET ── */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-body {
-  font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
-  background: var(--white);
-  color: var(--gray-900);
+html, body {
+  font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont,
+               system-ui, Roboto, 'Helvetica Neue', 'Segoe UI',
+               'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+  background: var(--tg-white, #FFFFFF);
+  color: var(--tg-900, #191F28);
   min-height: 100vh;
-  line-height: 1.6;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+a { color: inherit; text-decoration: none; }
+
 /* ── NAV / MASTHEAD ── */
 nav.greedy-nav,
 .masthead {
-  background: rgba(255, 255, 255, 0.85) !important;
+  background: rgba(255, 255, 255, 0.92) !important;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--gray-100) !important;
+  border-bottom: 1px solid var(--tg-100) !important;
   position: sticky !important;
   top: 0;
   z-index: 100;
@@ -53,7 +34,7 @@ nav.greedy-nav,
 }
 
 .masthead__inner-wrap {
-  max-width: 1120px !important;
+  max-width: 1080px !important;
   margin: 0 auto !important;
   padding: 0 24px !important;
   display: flex !important;
@@ -66,44 +47,42 @@ nav.greedy-nav,
 .masthead__menu a.site-title {
   font-size: 18px !important;
   font-weight: 700 !important;
-  color: var(--gray-900) !important;
+  color: var(--tg-900) !important;
   text-decoration: none !important;
-  letter-spacing: -0.5px !important;
+  letter-spacing: -0.4px !important;
 }
 
 .greedy-nav a,
 .greedy-nav__toggle,
 .visible-links a {
-  font-size: 14px !important;
+  font-size: 15px !important;
   font-weight: 500 !important;
-  color: var(--gray-700) !important;
+  color: var(--tg-700) !important;
   padding: 6px 14px !important;
   border-radius: 8px !important;
-  transition: all 0.15s !important;
+  transition: color 0.15s, background 0.15s !important;
   text-decoration: none !important;
 }
 
 .greedy-nav a:hover,
 .visible-links a:hover {
-  background: var(--gray-100) !important;
-  color: var(--gray-900) !important;
+  color: var(--tg-900) !important;
+  background: var(--tg-100) !important;
 }
 
 /* ── MAIN CONTENT (override Minimal Mistakes #main) ── */
 .layout--home #main,
 #main {
-  max-width: 1120px !important;
+  max-width: 1080px !important;
   margin: 0 auto !important;
-  padding: 0 24px 80px !important;
+  padding: 0 24px 96px !important;
   background: transparent !important;
 }
 
 .layout--home .initial-content > h1.page__title,
-.layout--home .archive > h1.page__title {
-  display: none !important;
-}
+.layout--home .archive > h1.page__title,
+.archive__subtitle { display: none !important; }
 
-/* archive wrapper full width on home */
 .layout--home .archive {
   width: 100% !important;
   float: none !important;
@@ -112,43 +91,42 @@ nav.greedy-nav,
 
 .layout--home .sidebar { display: none !important; }
 
-/* ── HERO ── */
+/* ── HERO (Toss series header) ── */
 .toss-hero {
-  max-width: 1120px;
+  max-width: 1080px;
   margin: 0 auto;
-  padding: 80px 24px 40px;
+  padding: 80px 24px 28px;
 }
 
 .toss-hero__title {
-  font-size: 48px;
+  font-size: 44px;
   font-weight: 800;
-  letter-spacing: -1.4px;
-  color: var(--gray-900);
-  line-height: 1.15;
+  letter-spacing: -1.6px;
+  color: var(--tg-900);
+  line-height: 1.2;
   margin: 0 0 12px;
 }
 
 .toss-hero__subtitle {
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 500;
-  color: var(--gray-600);
-  letter-spacing: -0.3px;
+  color: var(--tg-700);
+  letter-spacing: -0.4px;
   margin: 0;
+  line-height: 1.5;
 }
 
 @media (max-width: 768px) {
-  .toss-hero {
-    padding: 48px 20px 24px;
-  }
-  .toss-hero__title { font-size: 32px; letter-spacing: -1px; }
+  .toss-hero { padding: 56px 20px 20px; }
+  .toss-hero__title { font-size: 30px; letter-spacing: -1.1px; }
   .toss-hero__subtitle { font-size: 15px; }
 }
 
 /* ── FILTER CHIPS ── */
 .toss-filter {
-  max-width: 1120px;
+  max-width: 1080px;
   margin: 0 auto;
-  padding: 0 24px 28px;
+  padding: 8px 24px 24px;
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
@@ -159,161 +137,117 @@ nav.greedy-nav,
 .toss-chip {
   flex: 0 0 auto;
   appearance: none;
-  border: 1px solid var(--gray-200);
-  background: var(--white);
-  color: var(--gray-700);
+  border: 1px solid var(--tg-200);
+  background: var(--tg-white);
+  color: var(--tg-700);
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: -0.2px;
   padding: 8px 16px;
   border-radius: 100px;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
   white-space: nowrap;
   font-family: inherit;
   line-height: 1.2;
 }
 
 .toss-chip:hover {
-  background: var(--gray-100);
-  color: var(--gray-900);
+  background: var(--tg-100);
+  color: var(--tg-900);
 }
 
 .toss-chip.is-active {
-  background: var(--gray-900);
-  color: var(--white);
-  border-color: var(--gray-900);
+  background: var(--tg-900);
+  color: var(--tg-white);
+  border-color: var(--tg-900);
 }
 
 @media (max-width: 768px) {
   .toss-filter {
-    padding: 0 20px 20px;
+    padding: 4px 20px 16px;
     flex-wrap: nowrap;
   }
 }
 
-/* ── CARD GRID ── */
-.toss-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 28px 24px;
-  margin: 8px 0 48px;
+/* ── LIST (Toss series item style — text only) ── */
+.toss-list {
+  list-style: none;
+  margin: 8px 0 16px;
+  padding: 0;
 }
 
-@media (max-width: 768px) {
-  .toss-grid {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
+.toss-list__item {
+  border-bottom: 1px solid var(--tg-100);
 }
 
-/* ── CARD ── */
-.toss-card {
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  overflow: visible;
-  transition: transform 0.2s ease;
-}
+.toss-list__item:first-child { border-top: 1px solid var(--tg-100); }
 
-.toss-card__link {
+.toss-list__link {
   display: block;
+  padding: 28px 4px;
   text-decoration: none !important;
   color: inherit !important;
+  transition: opacity 0.15s;
 }
 
-.toss-card__link:hover { color: inherit !important; }
+.toss-list__link:hover { opacity: 0.78; }
+.toss-list__link:hover .toss-list__title { color: var(--tg-900); }
 
-.toss-card:hover { transform: translateY(-2px); }
-
-.toss-card__thumb {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 18px;
-  transition: box-shadow 0.2s ease;
-}
-
-.toss-card:hover .toss-card__thumb {
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
-}
-
-.toss-card__thumb-label {
-  font-size: 28px;
-  font-weight: 800;
-  letter-spacing: -0.6px;
-  color: rgba(255, 255, 255, 0.92);
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
-  padding: 0 24px;
-  text-align: center;
-  word-break: keep-all;
-}
-
-/* gradient palette for thumbnails (Toss-y, soft) */
-.toss-card__thumb--g0 { background: linear-gradient(135deg, #1B64DA 0%, #5B94E9 100%); }
-.toss-card__thumb--g1 { background: linear-gradient(135deg, #3182F6 0%, #87B6FF 100%); }
-.toss-card__thumb--g2 { background: linear-gradient(135deg, #0F172A 0%, #4F46E5 100%); }
-.toss-card__thumb--g3 { background: linear-gradient(135deg, #06B6D4 0%, #22C55E 100%); }
-.toss-card__thumb--g4 { background: linear-gradient(135deg, #F59E0B 0%, #F97316 100%); }
-.toss-card__thumb--g5 { background: linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%); }
-
-.toss-card__body {
-  padding: 0 4px;
-}
-
-.toss-card__category {
+.toss-list__category {
   display: inline-block;
   font-size: 13px;
   font-weight: 600;
-  color: var(--blue);
+  color: var(--tg-blue);
   letter-spacing: -0.2px;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
-.toss-card__title {
-  font-size: 19px;
+.toss-list__title {
+  font-size: 22px;
   font-weight: 700;
-  color: var(--gray-900);
+  color: var(--tg-900);
   line-height: 1.4;
-  letter-spacing: -0.4px;
+  letter-spacing: -0.6px;
   margin: 0 0 10px;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  word-break: keep-all;
 }
 
-.toss-card__excerpt {
-  font-size: 14px;
-  color: var(--gray-600);
-  line-height: 1.55;
+.toss-list__excerpt {
+  font-size: 15px;
+  color: var(--tg-700);
+  line-height: 1.6;
+  letter-spacing: -0.3px;
   margin: 0 0 14px;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  word-break: keep-all;
 }
 
-.toss-card__meta {
+.toss-list__meta {
   display: flex;
   align-items: center;
   gap: 6px;
   font-size: 13px;
-  color: var(--gray-500);
+  color: var(--tg-500);
   font-weight: 500;
+  letter-spacing: -0.2px;
 }
 
-.toss-card__dot { color: var(--gray-300); }
+.toss-list__dot { color: var(--tg-300); }
 
 @media (max-width: 768px) {
-  .toss-card__title { font-size: 17px; }
+  .toss-list__link { padding: 24px 0; }
+  .toss-list__title { font-size: 18px; letter-spacing: -0.4px; }
+  .toss-list__excerpt { font-size: 14px; }
 }
 
 /* ── EMPTY STATE ── */
@@ -321,7 +255,7 @@ nav.greedy-nav,
   text-align: center;
   padding: 80px 24px;
   font-size: 14px;
-  color: var(--gray-500);
+  color: var(--tg-500);
 }
 
 /* ── PAGINATION (Toss style) ── */
@@ -344,31 +278,31 @@ nav.greedy-nav,
   border-radius: 12px;
   border: 1px solid transparent;
   background: transparent;
-  color: var(--gray-700);
+  color: var(--tg-700);
   font-size: 15px;
   font-weight: 500;
   letter-spacing: -0.2px;
-  text-decoration: none;
+  text-decoration: none !important;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: background 0.15s, color 0.15s;
   font-family: inherit;
   line-height: 1;
 }
 
 .toss-pagination__btn:hover {
-  background: var(--gray-100);
-  color: var(--gray-900);
+  background: var(--tg-100);
+  color: var(--tg-900);
 }
 
 .toss-pagination__btn.is-current {
-  background: var(--gray-900);
-  color: var(--white);
+  background: var(--tg-900);
+  color: var(--tg-white);
   font-weight: 700;
   cursor: default;
 }
 
 .toss-pagination__btn--arrow {
-  color: var(--gray-700);
+  color: var(--tg-700);
   padding: 0;
   width: 40px;
 }
@@ -376,7 +310,7 @@ nav.greedy-nav,
 .toss-pagination__btn--arrow svg { display: block; }
 
 .toss-pagination__btn.is-disabled {
-  color: var(--gray-300);
+  color: var(--tg-300);
   cursor: not-allowed;
   pointer-events: none;
 }
@@ -387,19 +321,18 @@ nav.greedy-nav,
   justify-content: center;
   min-width: 24px;
   height: 40px;
-  color: var(--gray-400);
+  color: var(--tg-400);
   font-size: 15px;
   user-select: none;
 }
 
-/* legacy paginator class used elsewhere on archives */
+/* legacy pagination class (other archive pages) */
 .pagination {
   display: flex;
   justify-content: center;
   gap: 4px;
   margin-top: 32px;
 }
-
 .pagination ul {
   display: flex;
   gap: 4px;
@@ -407,7 +340,6 @@ nav.greedy-nav,
   padding: 0;
   margin: 0;
 }
-
 .pagination ul li a {
   display: inline-flex;
   align-items: center;
@@ -417,84 +349,80 @@ nav.greedy-nav,
   padding: 0 12px;
   border-radius: 12px;
   background: transparent;
-  color: var(--gray-700) !important;
+  color: var(--tg-700) !important;
   font-size: 15px;
   font-weight: 500;
   text-decoration: none !important;
-  transition: all 0.15s ease;
+  transition: background 0.15s, color 0.15s;
 }
-
 .pagination ul li a:hover {
-  background: var(--gray-100) !important;
-  color: var(--gray-900) !important;
+  background: var(--tg-100) !important;
+  color: var(--tg-900) !important;
 }
-
 .pagination ul li a.current {
-  background: var(--gray-900) !important;
-  color: var(--white) !important;
+  background: var(--tg-900) !important;
+  color: var(--tg-white) !important;
   font-weight: 700;
 }
-
 .pagination ul li a.disabled {
-  color: var(--gray-300) !important;
+  color: var(--tg-300) !important;
   cursor: not-allowed;
   pointer-events: none;
 }
 
-/* ── HIDE ARCHIVE SUBTITLE / PAGE TITLE ON HOME ── */
-.archive__subtitle { display: none !important; }
-
 /* ── FOOTER ── */
 .page__footer {
-  background: var(--white) !important;
-  border-top: 1px solid var(--gray-100) !important;
-  color: var(--gray-600) !important;
+  background: var(--tg-white) !important;
+  border-top: 1px solid var(--tg-100) !important;
+  color: var(--tg-600) !important;
   font-size: 13px !important;
   text-align: center !important;
   padding: 32px 24px !important;
-  margin-top: 40px !important;
+  margin-top: 48px !important;
 }
 
-/* ── PAGE / POST DETAIL (preserve previous polish) ── */
+/* ── PAGE / POST DETAIL (use Toss tokens) ── */
 .page__content {
-  font-size: 15px !important;
+  font-size: 17px !important;
   line-height: 1.8 !important;
-  color: var(--gray-800) !important;
+  color: var(--tg-800) !important;
+  letter-spacing: -0.3px !important;
 }
 
 .page__content h2 {
-  font-size: 22px !important;
+  font-size: 26px !important;
   font-weight: 700 !important;
-  letter-spacing: -0.5px !important;
+  letter-spacing: -0.7px !important;
   margin: 2em 0 0.6em !important;
-  color: var(--gray-900) !important;
+  color: var(--tg-900) !important;
 }
 
 .page__content h3 {
-  font-size: 18px !important;
+  font-size: 20px !important;
   font-weight: 700 !important;
+  letter-spacing: -0.5px !important;
   margin: 1.6em 0 0.5em !important;
-  color: var(--gray-900) !important;
+  color: var(--tg-900) !important;
 }
 
 .page__content p { margin-bottom: 1.2em !important; }
 
 .page__content a {
-  color: var(--blue) !important;
+  color: var(--tg-blue) !important;
   text-decoration: underline !important;
   text-underline-offset: 3px !important;
 }
 
 .page__content code {
-  background: var(--gray-100) !important;
+  background: var(--tg-100) !important;
   padding: 2px 6px !important;
   border-radius: 6px !important;
   font-size: 0.875em !important;
-  color: var(--blue) !important;
+  color: var(--tg-blue) !important;
 }
 
 .page__content pre {
-  background: var(--gray-900) !important;
+  background: var(--tg-900) !important;
   border-radius: var(--radius-sm) !important;
   padding: 20px 24px !important;
   overflow-x: auto !important;
@@ -509,9 +437,10 @@ nav.greedy-nav,
 }
 
 .page__content blockquote {
-  border-left: 3px solid var(--blue) !important;
+  border-left: 3px solid var(--tg-blue) !important;
   padding: 12px 20px !important;
-  background: var(--blue-light) !important;
+  background: var(--tg-blue-bg) !important;
   border-radius: 0 var(--radius-sm) var(--radius-sm) 0 !important;
   margin: 1.5em 0 !important;
+  color: var(--tg-800) !important;
 }
