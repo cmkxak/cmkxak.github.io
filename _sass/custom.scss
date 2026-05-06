@@ -827,22 +827,103 @@ a { color: inherit; text-decoration: none; }
     font-family: 'Fira Code', 'JetBrains Mono', 'Consolas', monospace !important;
   }
 
-  pre {
-    background: #1e2127 !important;
-    border: none !important;
-    border-radius: var(--radius-sm) !important;
-    padding: 20px 24px !important;
+  // ── GitHub Dark code blocks ──
+  pre,
+  div.highlighter-rouge pre,
+  figure.highlight pre,
+  .highlight pre {
+    background: #0d1117 !important;
+    color: #c9d1d9 !important;
+    border: 1px solid #30363d !important;
+    border-radius: 12px !important;
+    padding: 16px 20px !important;
     overflow-x: auto !important;
     margin: 1.6em 0 !important;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.12) !important;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.18) !important;
+    font-size: 14px !important;
+    line-height: 1.6 !important;
 
-    code {
+    code,
+    code.highlighter-rouge {
       background: transparent !important;
-      color: #abb2bf !important;
+      color: #c9d1d9 !important;
       font-size: 14px !important;
       border: none !important;
       padding: 0 !important;
-      font-family: 'Fira Code', 'JetBrains Mono', 'Consolas', monospace !important;
+      font-family: 'JetBrains Mono', 'Fira Code', 'SFMono-Regular', Consolas,
+                   'Liberation Mono', Menlo, monospace !important;
+    }
+  }
+
+  // GitHub Dark syntax tokens (Rouge highlighter classes)
+  .highlight,
+  div.highlighter-rouge,
+  figure.highlight,
+  pre.highlight {
+    .hll  { background-color: #3b3d2a; }
+
+    .c, .ch, .cd, .cm, .cp, .cpf, .c1, .cs { color: #8b949e !important; font-style: italic !important; }
+
+    .err  { color: #ffa198 !important; background-color: #490202 !important; }
+
+    .k, .kc, .kd, .kn, .kp, .kr, .kt, .kv { color: #ff7b72 !important; }
+
+    .o, .ow { color: #ff7b72 !important; }
+
+    .gd { color: #ffdcd7 !important; background-color: #67060c !important; }
+    .gi { color: #aff5b4 !important; background-color: #033a16 !important; }
+    .gr { color: #ffa198 !important; }
+    .gh { color: #79c0ff !important; font-weight: bold !important; }
+    .gu { color: #79c0ff !important; font-weight: bold !important; }
+    .ge { font-style: italic !important; }
+    .gs { font-weight: bold !important; }
+    .gl { color: #c9d1d9 !important; }
+    .go { color: #c9d1d9 !important; }
+    .gp { color: #8b949e !important; }
+    .gt { color: #ffa198 !important; }
+
+    .l, .ld { color: #79c0ff !important; }
+    .m, .mb, .mf, .mh, .mi, .il, .mo, .mx { color: #79c0ff !important; }
+
+    .n  { color: #c9d1d9 !important; }
+    .na { color: #79c0ff !important; }
+    .nb { color: #79c0ff !important; }
+    .bp { color: #79c0ff !important; }
+    .nc, .ne { color: #f0883e !important; font-weight: bold !important; }
+    .nd { color: #d2a8ff !important; font-weight: bold !important; }
+    .ni { color: #ffa657 !important; }
+    .nl { color: #79c0ff !important; font-weight: bold !important; }
+    .nn { color: #ffa657 !important; }
+    .nt { color: #7ee787 !important; }
+    .nf, .fm, .py { color: #d2a8ff !important; font-weight: bold !important; }
+    .no { color: #79c0ff !important; }
+    .nv, .vc, .vg, .vi { color: #79c0ff !important; }
+
+    .s, .sa, .sb, .sc, .dl, .sd, .s2, .se, .sh, .si, .sx, .sr, .s1, .ss { color: #a5d6ff !important; }
+
+    .p, .pi { color: #c9d1d9 !important; }
+    .w { color: #c9d1d9 !important; }
+  }
+
+  // line numbers gutter (when enabled)
+  .highlight {
+    .lineno, .gutter, .gl, .lntable .gl, table.rouge-table td.gutter {
+      color: #6e7681 !important;
+      border-right: 1px solid #30363d !important;
+      padding-right: 12px !important;
+      user-select: none !important;
+    }
+    table.rouge-table {
+      border: none !important;
+      margin: 0 !important;
+
+      td, th {
+        border: none !important;
+        padding: 0 !important;
+        background: transparent !important;
+      }
+
+      td.code { padding-left: 12px !important; }
     }
   }
 
