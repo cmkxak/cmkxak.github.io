@@ -1824,12 +1824,10 @@ a { color: inherit; text-decoration: none; }
     background: var(--tg-100);
   }
 
-  // 검정에서 흰색 글씨 → 그대로 살리되, 검정 배경은 컬러 변수로
-  .toss-pagination__btn.is-current,
-  .pagination ul li a.current {
-    background: var(--tg-blue) !important;
-    color: #FFFFFF !important;
-  }
+  // 다크 모드에서 페이지네이션 현재 페이지: 흰 박스 + 검정 글씨 (var 자동 스왑)
+  // 별도 오버라이드 없이 var(--tg-900) / var(--tg-bg) 만으로 자연스럽게 처리됨
+
+  // 카테고리 칩 active 만 다크에서도 토스 블루 유지
   .toss-chip.is-active {
     background: var(--tg-blue) !important;
     color: #FFFFFF !important;
