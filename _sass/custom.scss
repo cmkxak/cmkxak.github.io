@@ -1635,63 +1635,76 @@ a { color: inherit; text-decoration: none; }
 
 // ====================================================
 //  THEME TOGGLE (Light / Dark segmented radio)
+//  greedy-nav 안에 직접 자식으로 들어감. visible-links 밖!
 // ====================================================
 
-.masthead__menu-item--theme {
-  display: flex !important;
-  align-items: center !important;
-  margin-left: 8px !important;
-  padding: 0 !important;
+.greedy-nav .theme-toggle {
+  margin-left: auto !important; // greedy-nav flex flow에서 우측 끝으로
+  flex-shrink: 0 !important;
 }
 
 .theme-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 0;
-  padding: 3px;
-  background: var(--tg-100);
-  border-radius: 100px;
-  border: 1px solid var(--tg-200);
+  position: relative !important; // 내부 absolute 라디오의 기준점
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0 !important;
+  padding: 3px !important;
+  background: var(--tg-100) !important;
+  border-radius: 100px !important;
+  border: 1px solid var(--tg-200) !important;
+  flex-wrap: nowrap !important;
+  white-space: nowrap !important;
+  height: 32px;
+  box-sizing: border-box;
+  vertical-align: middle;
+  z-index: 1;
 
-  // 시각적으로만 라디오 input 숨김 (a11y는 유지)
+  // 라디오 input 완전 숨김 (a11y 유지)
   input[type="radio"] {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-    padding: 0;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    border: 0;
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    margin: -1px !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    clip-path: inset(50%) !important;
+    border: 0 !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
   }
 
   &__option {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    height: 26px;
-    padding: 0 12px;
-    border-radius: 100px;
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--tg-600);
-    cursor: pointer;
-    user-select: none;
-    line-height: 1;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 5px !important;
+    height: 24px !important;
+    padding: 0 10px !important;
+    border-radius: 100px !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    color: var(--tg-600) !important;
+    cursor: pointer !important;
+    user-select: none !important;
+    line-height: 1 !important;
     transition: background 0.15s, color 0.15s, box-shadow 0.15s;
+    text-decoration: none !important;
+    background: transparent !important;
+    border: none !important;
+    margin: 0 !important;
 
     svg {
       flex-shrink: 0;
       stroke: currentColor;
     }
 
-    &:hover { color: var(--tg-900); }
+    &:hover { color: var(--tg-900) !important; }
   }
 
-  // 활성: 라디오 checked + 그 다음 형제 label 에 스타일
+  // 활성: 라디오 checked + 그 다음 형제 label
   input[type="radio"]:checked + &__option {
-    background: var(--tg-white);
-    color: var(--tg-blue);
+    background: var(--tg-white) !important;
+    color: var(--tg-blue) !important;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
   }
 
@@ -1701,9 +1714,16 @@ a { color: inherit; text-decoration: none; }
   }
 }
 
+// 다크 모드에서는 활성 칸이 흰색 박스이면 너무 튐 → 약간 어두운 카드로
+[data-theme="dark"] .theme-toggle input[type="radio"]:checked + .theme-toggle__option {
+  background: var(--tg-200) !important;
+  color: var(--tg-blue) !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
 @media (max-width: 768px) {
-  .theme-toggle__option span { display: none; }
-  .theme-toggle__option { padding: 0 8px; height: 24px; }
+  .theme-toggle__option span { display: none !important; }
+  .theme-toggle__option { padding: 0 8px !important; }
 }
 
 // ====================================================
