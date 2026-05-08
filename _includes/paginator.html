@@ -55,7 +55,7 @@
     {% if paginator.page == paginator.total_pages %}
       <span class="toss-pagination__btn is-current" aria-current="page">{{ paginator.page }}</span>
     {% else %}
-      <a class="toss-pagination__btn" href="{{ site.paginate_path | replace: ':num', paginator.total_pages | replace: '//', '/' | relative_url }}">{{ paginator.total_pages }}</a>
+      <a class="toss-pagination__btn toss-pagination__btn--last" href="{{ site.paginate_path | replace: ':num', paginator.total_pages | replace: '//', '/' | relative_url }}">{{ paginator.total_pages }}</a>
     {% endif %}
   {% endif %}
 

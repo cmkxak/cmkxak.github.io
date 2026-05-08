@@ -234,30 +234,42 @@ a { color: inherit; text-decoration: none; }
 .toss-chip {
   flex: 0 0 auto;
   appearance: none;
-  border: 1px solid var(--tg-200);
-  background: var(--tg-white);
+  border: none;
+  outline: none;
+  background: var(--tg-100);
   color: var(--tg-700);
   font-size: 14px;
   font-weight: 600;
   letter-spacing: -0.2px;
-  padding: 8px 16px;
+  padding: 9px 16px;
   border-radius: 100px;
   cursor: pointer;
-  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  transition: background 0.15s, color 0.15s;
   white-space: nowrap;
   font-family: inherit;
   line-height: 1.2;
 
   &:hover {
-    background: var(--tg-100);
+    background: var(--tg-200);
     color: var(--tg-900);
+  }
+
+  &:focus,
+  &:focus-visible,
+  &:active {
+    outline: none;
+    box-shadow: none;
   }
 
   &.is-active {
     background: var(--tg-blue);
     color: var(--tg-white);
-    border-color: transparent;
     box-shadow: 0 4px 12px rgba(49, 130, 246, 0.25);
+  }
+
+  &.is-active:hover {
+    background: var(--tg-blue);
+    color: var(--tg-white);
   }
 }
 
@@ -459,13 +471,13 @@ a { color: inherit; text-decoration: none; }
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 40px;
-    height: 40px;
-    padding: 0 12px;
-    border-radius: 12px;
+    min-width: 36px;
+    height: 36px;
+    padding: 0 10px;
+    border-radius: 10px;
     border: 1px solid transparent;
     background: transparent;
-    color: var(--tg-700);
+    color: var(--tg-800);
     font-size: 15px;
     font-weight: 500;
     letter-spacing: -0.2px;
@@ -480,24 +492,41 @@ a { color: inherit; text-decoration: none; }
       color: var(--tg-900);
     }
 
+    // 현재 페이지: 라이트 그레이 박스 + 검정 글씨 (토스 블로그 톤)
     &.is-current {
-      background: var(--tg-900);
-      color: var(--tg-bg);
+      background: var(--tg-100);
+      color: var(--tg-900);
       font-weight: 700;
       cursor: default;
     }
 
     &.is-current:hover {
-      background: var(--tg-900);
-      color: var(--tg-bg);
+      background: var(--tg-100);
+      color: var(--tg-900);
+    }
+
+    // 마지막 페이지: 토스 블루로 강조
+    &--last {
+      color: var(--tg-blue);
+      font-weight: 600;
+
+      &:hover {
+        background: var(--tg-blue-bg);
+        color: var(--tg-blue);
+      }
     }
 
     &--arrow {
-      color: var(--tg-700);
+      color: var(--tg-400);
       padding: 0;
-      width: 40px;
+      width: 36px;
 
       svg { display: block; }
+
+      &:hover {
+        background: var(--tg-100);
+        color: var(--tg-700);
+      }
     }
 
     &.is-disabled {
@@ -556,14 +585,14 @@ a { color: inherit; text-decoration: none; }
     }
 
     &.current {
-      background: var(--tg-900) !important;
-      color: var(--tg-bg) !important;
+      background: var(--tg-100) !important;
+      color: var(--tg-900) !important;
       font-weight: 700;
     }
 
     &.current:hover {
-      background: var(--tg-900) !important;
-      color: var(--tg-bg) !important;
+      background: var(--tg-100) !important;
+      color: var(--tg-900) !important;
     }
 
     &.disabled {
@@ -1786,11 +1815,11 @@ a { color: inherit; text-decoration: none; }
     color: var(--tg-blue);
   }
 
-  // 카테고리 필터 칩
+  // 카테고리 필터 칩 (다크 모드)
   .toss-chip {
     background: var(--tg-100);
     color: var(--tg-700);
-    border-color: var(--tg-200);
+    border: none;
 
     &:hover { background: var(--tg-200); color: var(--tg-900); }
   }
@@ -1824,8 +1853,45 @@ a { color: inherit; text-decoration: none; }
     background: var(--tg-100);
   }
 
-  // 다크 모드에서 페이지네이션 현재 페이지: 흰 박스 + 검정 글씨 (var 자동 스왑)
-  // 별도 오버라이드 없이 var(--tg-900) / var(--tg-bg) 만으로 자연스럽게 처리됨
+  // 다크 모드 페이지네이션 보강 ─────────────────────────────
+  // 현재 페이지/일반 숫자/마지막 페이지(블루)는 토큰만으로 자연 스왑되지만
+  // 화살표·점선·disabled 톤은 다크 배경에서 너무 어두워서 한 단계 밝게 올림.
+  .toss-pagination__btn--arrow {
+    color: var(--tg-500) !important;
+
+    &:hover {
+      background: var(--tg-100) !important;
+      color: var(--tg-700) !important;
+    }
+  }
+
+  .toss-pagination__btn.is-disabled,
+  .pagination ul li a.disabled {
+    color: var(--tg-400) !important;
+    opacity: 0.6;
+  }
+
+  .toss-pagination__ellipsis {
+    color: var(--tg-500) !important;
+  }
+
+  // 일반 페이지 번호 hover는 더 또렷하게
+  .toss-pagination__btn:hover,
+  .pagination ul li a:hover {
+    background: var(--tg-100) !important;
+    color: var(--tg-900) !important;
+  }
+
+  // 마지막 페이지 글씨는 다크 토스 블루(#58A6FF, --tg-blue가 자동 스왑)
+  .toss-pagination__btn--last {
+    color: var(--tg-blue) !important;
+
+    &:hover {
+      background: var(--tg-blue-bg) !important;
+      color: var(--tg-blue) !important;
+    }
+  }
+  // ───────────────────────────────────────────────────────
 
   // 카테고리 칩 active 만 다크에서도 토스 블루 유지
   .toss-chip.is-active {
