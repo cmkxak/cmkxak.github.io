@@ -47,18 +47,19 @@ body {
   font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont,
                system-ui, Roboto, 'Helvetica Neue', 'Segoe UI',
                'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif !important;
-  background: #FFFFFF !important;
-  color: #191F28 !important;
+  background: var(--tg-bg) !important;
+  color: var(--tg-900) !important;
   line-height: 1.5 !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 a { color: inherit; text-decoration: none; }
 
 // ── Masthead / Nav ──
 .masthead {
-  background: rgba(255, 255, 255, 0.92) !important;
+  background: var(--tg-bg) !important;
   backdrop-filter: blur(20px) !important;
   -webkit-backdrop-filter: blur(20px) !important;
   border-bottom: 1px solid var(--tg-100) !important;
@@ -1631,3 +1632,199 @@ a { color: inherit; text-decoration: none; }
 
   .page__title { font-size: 24px !important; }
 }
+
+// ====================================================
+//  THEME TOGGLE (Light / Dark segmented radio)
+// ====================================================
+
+.masthead__menu-item--theme {
+  display: flex !important;
+  align-items: center !important;
+  margin-left: 8px !important;
+  padding: 0 !important;
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  padding: 3px;
+  background: var(--tg-100);
+  border-radius: 100px;
+  border: 1px solid var(--tg-200);
+
+  // 시각적으로만 라디오 input 숨김 (a11y는 유지)
+  input[type="radio"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+
+  &__option {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    height: 26px;
+    padding: 0 12px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--tg-600);
+    cursor: pointer;
+    user-select: none;
+    line-height: 1;
+    transition: background 0.15s, color 0.15s, box-shadow 0.15s;
+
+    svg {
+      flex-shrink: 0;
+      stroke: currentColor;
+    }
+
+    &:hover { color: var(--tg-900); }
+  }
+
+  // 활성: 라디오 checked + 그 다음 형제 label 에 스타일
+  input[type="radio"]:checked + &__option {
+    background: var(--tg-white);
+    color: var(--tg-blue);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  }
+
+  input[type="radio"]:focus-visible + &__option {
+    outline: 2px solid var(--tg-blue);
+    outline-offset: 2px;
+  }
+}
+
+@media (max-width: 768px) {
+  .theme-toggle__option span { display: none; }
+  .theme-toggle__option { padding: 0 8px; height: 24px; }
+}
+
+// ====================================================
+//  DARK MODE — overrides for hard-coded literal colors
+//  (variables already swap automatically; only literals need help)
+// ====================================================
+
+[data-theme="dark"] {
+
+  // 메인 페이지 / 상세 페이지 / About 페이지에서 "#191F28 !important" 같이 고정 색이 박힌 곳 일괄 오버라이드
+  .toss-pageHeader__title,
+  .toss-list__title,
+  .toss-article__title,
+  .toss-about__name,
+  .toss-about__sectionTitle,
+  .toss-about__company,
+  .toss-about__awardTitle,
+  .toss-related__heading,
+  .toss-popular__heading {
+    color: var(--tg-900) !important;
+  }
+
+  // 부드러운 그레이 본문은 var(--tg-700) 톤으로
+  .toss-list__excerpt {
+    color: var(--tg-700) !important;
+  }
+
+  // 강조 강조어(<strong>) 다크에서 너무 진해지는 거 방지
+  .toss-about__bullets p strong { color: var(--tg-blue) !important; }
+
+  // Hero 그라데이션 카드: 다크에선 너무 튀어서 차분하게
+  .toss-about__hero {
+    background: linear-gradient(135deg, rgba(56, 139, 253, 0.18) 0%, rgba(13, 17, 23, 0.6) 70%, var(--tg-bg) 100%) !important;
+  }
+
+  .toss-about__avatar {
+    background: var(--tg-100);
+    border-color: var(--tg-200);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+  }
+
+  // 인기있는 글 박스 / about 카드 / 카드형 컴포넌트
+  .toss-popular,
+  .toss-about__skillCard,
+  .toss-about__award,
+  .toss-related__link {
+    background: var(--tg-100) !important;
+    border-color: var(--tg-200) !important;
+  }
+
+  // 칩 / pill / tag
+  .toss-pill--author,
+  .toss-tag,
+  .toss-about__chip,
+  .toss-about__period {
+    background: var(--tg-200);
+    color: var(--tg-800);
+  }
+
+  .toss-pill--category {
+    background: var(--tg-blue-bg);
+    color: var(--tg-blue);
+  }
+
+  // 카테고리 필터 칩
+  .toss-chip {
+    background: var(--tg-100);
+    color: var(--tg-700);
+    border-color: var(--tg-200);
+
+    &:hover { background: var(--tg-200); color: var(--tg-900); }
+  }
+
+  // 페이지네이션 hover/리스트 구분선이 진해보이지 않도록
+  .toss-list__item,
+  .toss-list__item:first-child {
+    border-color: var(--tg-200) !important;
+  }
+
+  // contact pill
+  .toss-about__contactItem {
+    background: var(--tg-100);
+    border-color: var(--tg-200);
+  }
+
+  // bullets 박스
+  .toss-about__bullets {
+    background: var(--tg-100);
+  }
+  .toss-about__bullets p {
+    border-bottom-color: var(--tg-200);
+    color: var(--tg-800);
+  }
+
+  // 페이지 헤더 timeline 좌측 라인
+  .toss-about__timeline::before {
+    background: linear-gradient(180deg, var(--tg-blue) 0%, var(--tg-300) 100%);
+  }
+  .toss-about__exp::before {
+    background: var(--tg-100);
+  }
+
+  // 검정에서 흰색 글씨 → 그대로 살리되, 검정 배경은 컬러 변수로
+  .toss-pagination__btn.is-current,
+  .pagination ul li a.current {
+    background: var(--tg-blue) !important;
+    color: #FFFFFF !important;
+  }
+  .toss-chip.is-active {
+    background: var(--tg-blue) !important;
+    color: #FFFFFF !important;
+    border-color: transparent !important;
+  }
+
+  // 본문 코드는 GitHub Dark가 이미 다크 톤이라 그대로 유지 OK.
+
+  // 푸터
+  .page__footer {
+    background: var(--tg-bg) !important;
+    border-top-color: var(--tg-100) !important;
+    color: var(--tg-600) !important;
+  }
+}
+
