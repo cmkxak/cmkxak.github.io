@@ -481,16 +481,15 @@ a { color: inherit; text-decoration: none; }
     }
 
     &.is-current {
-      background: var(--tg-blue);
-      color: var(--tg-white);
+      background: var(--tg-900);
+      color: var(--tg-bg);
       font-weight: 700;
       cursor: default;
-      box-shadow: 0 4px 12px rgba(49, 130, 246, 0.25);
     }
 
     &.is-current:hover {
-      background: var(--tg-blue);
-      color: var(--tg-white);
+      background: var(--tg-900);
+      color: var(--tg-bg);
     }
 
     &--arrow {
@@ -557,15 +556,14 @@ a { color: inherit; text-decoration: none; }
     }
 
     &.current {
-      background: var(--tg-blue) !important;
-      color: var(--tg-white) !important;
+      background: var(--tg-900) !important;
+      color: var(--tg-bg) !important;
       font-weight: 700;
-      box-shadow: 0 4px 12px rgba(49, 130, 246, 0.25);
     }
 
     &.current:hover {
-      background: var(--tg-blue) !important;
-      color: var(--tg-white) !important;
+      background: var(--tg-900) !important;
+      color: var(--tg-bg) !important;
     }
 
     &.disabled {
